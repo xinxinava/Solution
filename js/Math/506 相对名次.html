@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findRelativeRanks = function(score) {
+            let temp = [...score];
+            temp.sort((a, b) => b - a);
+            let mmp = new Map();
+            for (let i = 0; i < temp.length; i++)
+                mmp.set(temp[i], i + 1);
+            let res = [];
+            for (let i = 0; i < score.length; i++) {
+                if (mmp.get(score[i]) === 1)
+                    res.push("Gold Medal");
+                else if (mmp.get(score[i]) === 2)
+                    res.push("Silver Medal");
+                else if (mmp.get(score[i]) === 3)
+                    res.push("Bronze Medal");
+                else
+                    res.push(mmp.get(score[i]) + '');
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

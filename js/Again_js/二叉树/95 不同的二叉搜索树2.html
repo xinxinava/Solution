@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var generateTrees = function(n) {
+            if (n === 0)
+                return [];
+            return create(1, n);
+        };
+
+        function create(start, end) {
+            if (start > end)
+                return [null];
+            let ans = [];
+            for (let i = start; i <= end; i++) {
+                let leftT = create(start, i - 1);
+                let rightT = create(i + 1, end);
+                for (let lf of leftT) {
+                    for (let rt of rightT) {
+                        let currT = new TreeNode(i);
+                        currT.left = lf;
+                        currT.right = rt;
+                        ans.push(currT);
+                    }
+                }
+            }
+            return ans;
+        }
+    </script>
+</body>
+
+</html>

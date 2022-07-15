@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var validUtf8 = function(data) {
+            let numIndex = 0;
+            let mask1 = 1 << 7;
+            let mask2 = 1 << 6;
+            for (let i = 0; i < data.length; i++) {
+                if (numIndex === 0) {
+                    let mask = 1 << 7;
+                    while ((mask & data[i]) !== 0) {
+                        numIndex++;
+                        mask = mask >> 1;
+                    }
+                    if (numIndex === 0) {
+                        continue;
+                    }
+                    if (numIndex > 4 || numIndex === 1) {
+                        return false;
+                    }
+                } else {
+                    if (!((data[i] & mask1) != 0 && (mask2 & data[i]) === 0))
+                        return false;
+                }
+                numIndex--;
+            }
+            return numIndex === 0;
+
+        };
+    </script>
+</body>
+
+</html>

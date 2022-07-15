@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //BFS
+        var pacificAtlantic = function(heights) {
+            let m = heights.length;
+            let n = heights[0].length;
+            let ans = [];
+            let vis1 = new Array(m).fill(0).map(() => new Array(n).fill(0));
+            let vis2 = new Array(m).fill(0).map(() => new Array(n).fill(0));
+            let q1 = [];
+            let q2 = [];
+            let dirs = [
+                [-1, 0],
+                [0, -1],
+                [0, 1],
+                [1, 0]
+            ];
+            for (let i = 0; i < m; i++) {
+                q1.push([i, 0]);
+                vis1[i][0] = 1;
+                q2.push([i][n - 1]);
+                vis1[i][n - 1] = 1;
+            }
+            for (let j = 0; j < n; j++) {
+                q1.push([0][j]);
+                vis1[0][j] = 1;
+                q2.push([m - 1][j]);
+                vis2[m - 1][j] = 1;
+            }
+            while (!q1.length) {
+                let cur = q1[0];
+                q1 = q1.slice(1);
+                for (let idx of dirs) {
+                    let x = cur[0] + idx[0];
+                    let y = cur[1] + idx[1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && heights[x][y] >= heights[cur[0]][cur[1]] && !vis1[x][y]) {
+                        q1.push([x, y]);
+                        vis1[x][y] = 1;
+                    }
+                }
+            }
+            while (!q2.length) {
+                let cur = q2[0];
+                q2 = q2.slice(1);
+                for (let idx of dirs) {
+                    let x = cur[0] + idx[0];
+                    let y = cur[1] + idx[1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && heights[x][y] >= heights[cur[0]][cur[1]] && !vis2[x][y]) {
+                        q2.push([x, y]);
+                        vis2[x][y] = 1;
+                    }
+                }
+            }
+            for (let i = 0; i < m; i++)
+                for (let j = 0; j < n; j++)
+                    if (vis1[i][j] && vis2[i][j])
+                        ans.push([i, j]);
+            return ans;
+
+        };
+    </script>
+</body>
+
+</html>

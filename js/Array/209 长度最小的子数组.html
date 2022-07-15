@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var minSubArrayLen = function(target, nums) {
+            let sum = 0,
+                left = 0,
+                right = 0,
+                minlen = Number.MAX_VALUE,
+                flag = 0;
+            while (right < nums.length) {
+                if (flag == 0) {
+                    sum += nums[right];
+                }
+                if (sum < target) {
+                    right++;
+                    flag = 0;
+                } else {
+                    minlen = Math.min(right - left + 1, minlen);
+                    sum -= nums[left];
+                    left++;
+                    flag = 1;
+                }
+            }
+            if (minlen != Number.MAX_VALUE)
+                return minlen;
+            else
+                return 0;
+        };
+    </script>
+</body>
+
+</html>

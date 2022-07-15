@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var buildTree = function(inorder, postorder) {
+            if (inorder.length === 0 || postorder.length === 0)
+                return null;
+            return create(inorder, 0, inorder.length, postorder, 0, postorder.length);
+        };
+
+        function create(inorder, instart, inend, postorder, poststart, postend) {
+            if (poststart === postend)
+                return null;
+            let val = postorder[postend - 1];
+            let root = new TreeNode(val);
+            if (postend - poststart === 1)
+                return root;
+            let idx = instart;
+            for (let i = instart; i < inend; i++)
+                if (inorder[i] === val) {
+                    idx = i;
+                    break;
+                }
+
+            root.left = create(inorder, instart, idx, postorder, poststart, poststart + idx - instart);
+            root.right = create(inorder, idx + 1, inend, postorder, poststart + idx - instart, postend - 1);
+            return root;
+        }
+    </script>
+</body>
+
+</html>

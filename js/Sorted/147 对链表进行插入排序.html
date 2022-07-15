@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var insertionSortList = function(head) {
+            if (head == null)
+                return null;
+            let hh = new ListNode();
+            hh.next = head;
+            let lastSorted = head;
+            let cur = head.next;
+            while (cur != null) {
+                if (lastSorted.val <= cur.val) {
+                    lastSorted = lastSorted.next;
+                } else {
+                    let prev = hh;
+                    while (prev.next.val <= cur.val)
+                        prev = prev.next;
+                    lastSorted.next = cur.next;
+                    cur.next = prev.next;
+                    prev.next = cur;
+                }
+                cur = lastSorted.next;
+            }
+            return hh.next;
+        };
+    </script>
+</body>
+
+</html>

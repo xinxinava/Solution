@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var wordBreak = function(s, wordDict) {
+            let sst = new Set();
+            for (let i = 0; i < wordDict.length; i++)
+                sst.add(wordDict[i]);
+            let dp = new Array(s.length + 1).fill(false);
+            dp[0] = true;
+            for (let i = 0; i <= s.length; i++) {
+                for (let j = 0; j < i; j++) {
+                    if (dp[j] && sst.has(s.substring(j, i))) {
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+            return dp[s.length];
+        };
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>

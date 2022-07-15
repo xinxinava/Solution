@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var averageOfLevels = function(root) {
+            if (root === null)
+                return [];
+            let queue = [root];
+            let res = [];
+            while (queue.length) {
+                let len = queue.length;
+                let sum = 0;
+                for (let i = 0; i < len; i++) {
+                    let temp = queue.shift();
+                    sum += temp.val;
+                    if (temp.left)
+                        queue.push(temp.left);
+                    if (temp.right)
+                        queue.push(temp.right);
+                }
+                res.push(sum / len);
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortedListToBST = function(head) {
+            let ans = [];
+            let pre = head;
+            while (pre != null) {
+                ans.push(pre.val);
+                pre = pre.next;
+            }
+            if (ans.length == 0)
+                return null;
+            return create(ans, 0, ans.length - 1);
+        };
+
+        function create(ans, start, end) {
+            if (start > end)
+                return null;
+            let idx = start + parseInt((end - start + 1) / 2);
+            let root = new TreeNode(ans[idx]);
+            root.left = create(ans, start, idx - 1);
+            root.right = create(ans, idx + 1, end);
+            return root;
+        }
+    </script>
+</body>
+
+</html>

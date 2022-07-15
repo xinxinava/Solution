@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var searchInsert = function(nums, target) {
+            let low = 0,
+                high = nums.length - 1;
+            if (target < nums[low])
+                return 0;
+            if (target > nums[high])
+                return high + 1;
+            let mid = parseInt((low + high) / 2);
+            while (low <= high && nums[mid] != target) {
+                if (target < nums[mid])
+                    high = mid - 1;
+                else
+                    low = mid + 1;
+                mid = parseInt((low + high) / 2);
+            }
+            if (nums[mid] == target)
+                return mid;
+            else if (target < nums[mid])
+                return mid + 1;
+            else
+                return mid - 1;
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findMaxForm = function(strs, m, n) {
+            let dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+            for (let s = 0; s < strs.length; s++) {
+                let zeroNum = 0,
+                    oneNum = 0;
+                for (let i = 0; i < strs[s].length; i++) {
+                    if (strs[s][i] == '0')
+                        zeroNum++;
+                    else
+                        oneNum++;
+                }
+                for (let i = m; i >= zeroNum; i--)
+                    for (let j = n; j >= oneNum; j--)
+                        dp[i][j] = Math.max(dp[i][j], dp[i - zeroNum][j - oneNum] + 1);
+            }
+            console.log(dp);
+            return dp[m][n];
+        };
+        let strs = ["10", "0001", "111001", "1", "0"];
+        console.log(findMaxForm(strs, 5, 3));
+    </script>
+</body>
+
+</html>

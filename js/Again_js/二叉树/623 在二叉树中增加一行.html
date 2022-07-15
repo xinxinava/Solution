@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //dfs
+        var addOneRow = function(root, val, depth) {
+                if (depth === 1) {
+                    let newRoot = new TreeNode(val);
+                    newRoot.left = root;
+                    return newRoot;
+                }
+
+                function insert(root, currdepth) {
+                    if (root === null)
+                        return;
+                    if (currdepth === depth - 1) {
+                        let newNodeLeft = new TreeNode(val);
+                        newNodeLeft.left = root.left
+                        root.left = newNodeLeft;
+                        let newNodeRight = new TreeNode(val);
+                        newNodeRight.right = root.right;
+                        root.right = newNodeRight;
+                    } else {
+                        insert(root.left, currdepth + 1);
+                        insert(root.right, currdepth + 1);
+                    }
+                }
+                insert(root, 1);
+                return root;
+            }
+            //bfs
+        var addOneRow = function(root, val, depth) {
+            if (depth === 1 || root === null) {
+                let newRoot = new TreeNode(val);
+                newRoot.left = root;
+                return newRoot;
+            }
+            let queue = [root];
+            let count = 0;
+            while (queue.length) {
+                let len = queue.length;
+                count++;
+                for (let i = 0; i < len; i++) {
+                    let temp = queue.shift();
+                    if (count === depth - 1) {
+                        let newNodeLeft = new TreeNode(val);
+                        newNodeLeft.left = temp.left;
+                        temp.left = newNodeLeft;
+                        let NewNodeRight = new TreeNode(val);
+                        NewNodeRight.right = temp.right;
+                        temp.right = NewNodeRight;
+                    } else {
+                        if (temp.left)
+                            queue.push(temp.left);
+                        if (temp.right)
+                            queue.push(temp.right);
+                    }
+                }
+                if (count === depth - 1)
+                    return root;
+            }
+            return root;
+        };
+    </script>
+</body>
+
+</html>

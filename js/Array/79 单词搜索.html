@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var exist = function(board, word) {
+            let m = board.length,
+                n = board[0].length;
+            let visited = new Array(m).fill(false).map(() => new Array(n).fill(false));
+            for (let i = 0; i < m; i++) {
+                for (let j = 0; j < n; j++) {
+                    if (check(board, visited, word, i, j, 0))
+                        return true;
+                }
+            }
+            return false;
+        };
+
+        function check(board, visited, word, i, j, k) {
+            if (board[i][j] !== word[k])
+                return false;
+            if (k === word.length - 1)
+                return true;
+            visited[i][j] = true;
+            let pair = [
+                [0, 1],
+                [0, -1],
+                [1, 0],
+                [-1, 0]
+            ];
+            let result = false;
+            for (let p_i = 0; p_i < 4; p_i++) {
+                let newi = i + pair[p_i][0];
+                let newj = j + pair[p_i][1];
+                if (newi >= 0 && newi < board.length && newj >= 0 && newj < board[0].length) {
+                    if (!visited[newi][newj]) {
+                        let flag = check(board, visited, word, newi, newj, k + 1)
+                        if (flag) {
+                            result = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            visited[i][j] = false;
+            return result;
+        }
+    </script>
+</body>
+
+</html>

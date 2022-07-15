@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sumOfLeftLeaves = function(root) {
+            if (root == null) return 0;
+            let leftT = sumOfLeftLeaves(root.left);
+            let rightT = sumOfLeftLeaves(root.right);
+            let midvalue = 0;
+            if (root.left != null && root.left.left == null && root.left.right == null)
+                midvalue = root.left.val;
+            return midvalue + leftT + rightT;
+        };
+    </script>
+</body>
+
+</html>

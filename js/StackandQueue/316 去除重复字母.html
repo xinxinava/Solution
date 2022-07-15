@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //单调栈
+        var removeDuplicateLetters = function(s) {
+            let nums = new Array(26).fill(0);
+            let stk = [];
+            let vis = [];
+            let ac = 'a'.charCodeAt();
+            for (let i = 0; i < s.length; i++) {
+                nums[s[i].charCodeAt() - ac]++;
+            }
+            for (let i = 0; i < s.length; i++) {
+                let si = s[i].charCodeAt();
+                if (!vis[si - ac]) {
+                    while (stk.length && stk[stk.length - 1] > s[i]) {
+                        if (nums[stk[stk.length - 1].charCodeAt() - ac] > 0) {
+                            vis[stk[stk.length - 1].charCodeAt() - ac] = 0;
+                            stk.pop();
+                        } else {
+                            break;
+                        }
+                    }
+                    vis[si - ac] = 1;
+                    stk.push(s[i]);
+                }
+                nums[si - ac]--;
+            }
+            return stk.join('');
+
+        };
+    </script>
+</body>
+
+</html>

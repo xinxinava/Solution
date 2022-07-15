@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findLengthOfLCIS = function(nums) {
+            let len = nums.length;
+            if (len == 0) return 0;
+            let dp = new Array(len).fill(1);
+            let maxlen = 1;
+            for (let i = 1; i < len; i++) {
+                if (nums[i] > nums[i - 1])
+                    dp[i] = dp[i - 1] + 1;
+                else
+                    dp[i] = 1;
+                maxlen = maxlen > dp[i] ? maxlen : dp[i];
+            }
+            //     console.log(dp);
+            return maxlen;
+        };
+        let nums = [1, 3, 5, 4, 7];
+        console.log(findLengthOfLCIS(nums));
+    </script>
+</body>
+
+</html>

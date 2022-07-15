@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var validIPAddress = function(queryIP) {
+            let n = queryIP.length;
+            let ipv4 = false;
+            let ipv6 = false;
+            for (let i = 0; i < n; i++) {
+                if (queryIP[i] === '.') {
+                    ipv4 = true;
+                    break;
+                }
+                if (queryIP[i] === ':') {
+                    ipv6 = true;
+                    break;
+                }
+            }
+            if (ipv4 && isIPv4(queryIP))
+                return "IPv4";
+            else if (ipv6 && isIPv6(queryIP))
+                return "IPv6";
+            else
+                return "Neither";
+        };
+
+        function isIPv4(s) {
+            let ans = s.split('.');
+            if (ans.length !== 4)
+                return false;
+            for (let ch of ans) {
+                if (ch.length > 3 || ch.length <= 0)
+                    return false;
+                for (let i = 0; i < ch.length; i++) {
+                    if (ch[i].charCodeAt() < '0'.charCodeAt() || ch[i].charCodeAt() > '9'.charCodeAt())
+                        return false;
+                }
+                if (Number(ch) > 255)
+                    return false;
+                if (Number(ch) >= 0 && Number(ch) <= 255) {
+                    if (ch.length > 1 && ch[0] === '0')
+                        return false;
+                }
+
+            }
+            return true;
+        }
+
+        function isIPv6(s) {
+            let ans = s.split(':');
+            console.log(ans);
+            if (ans.length !== 8)
+                return false;
+            for (let ch of ans) {
+                ch = ch.toUpperCase();
+                if (ch.length > 4 || ch.length == 0)
+                    return false;
+                for (let i = 0; i < ch.length; i++) {
+                    if (!isNaN(ch[i])) {
+                        if (ch[i].charCodeAt() < '0'.charCodeAt() || ch[i].charCodeAt() > '9'.charCodeAt()) {
+                            console.log(1, ch);
+                            return false;
+                        }
+                    } else if (ch[i].charCodeAt() < 'A'.charCodeAt() || ch[i].charCodeAt() > 'F'.charCodeAt()) {
+                        console.log(2, ch);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var search = function(nums, target) {
+            let low = 0,
+                high = nums.length - 1;
+            let mid = Math.ceil((high + low) / 2);
+            while (low < high && nums[mid] != target) {
+                if (target < nums[mid])
+                    high = mid - 1;
+                else
+                    low = mid + 1;
+                mid = Math.ceil((high + low) / 2);
+            }
+            if (nums[mid] == target)
+                return mid;
+            else
+                return -1;
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //dp+状态压缩
+        var makesquare = function(matchsticks) {
+            matchsticks.sort((a, b) => a - b);
+            let sum = 0;
+            let len = matchsticks.length;
+            for (let num of matchsticks)
+                sum += num;
+            if (sum % 4 || matchsticks[len - 1] > sum / 4)
+                return false;
+            let target = sum / 4;
+            let size = 1 << len;
+            let dp = new Array(size).fill(false);
+            let currentSum = new Array(size).fill(0);
+            dp[0] = true;
+            for (let i = 0; i < size; i++) {
+                if (!dp[i])
+                    continue;
+                for (let j = 0; j < len; j++) {
+                    if (i & (1 << j) != 0)
+                        continue;
+                    let next = i | (1 << j);
+                    if (dp[next])
+                        continue;
+                    if ((currentSum[i] % target) + matchsticks[j] <= target) {
+                        currentSum[next] = currentSum[i] + matchsticks[j];
+                        dp[next] = true;
+                    } else
+                        break;
+                }
+            }
+            return dp[size - 1];
+        };
+    </script>
+</body>
+
+</html>

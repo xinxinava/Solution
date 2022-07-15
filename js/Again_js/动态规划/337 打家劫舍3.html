@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var rob = function(root) {
+            let dp = Traveral(root);
+            return Math.max(dp[0], dp[1]);
+        };
+
+        function Traveral(root) {
+            if (root === null)
+                return [0, 0];
+            let L = Traveral(root.left);
+            let R = Traveral(root.right);
+            let val1 = Math.max(L[0], L[1]) + Math.max(R[0], R[1]);
+            let val2 = root.val + L[0] + R[0];
+            return [val1, val2];
+        }
+    </script>
+</body>
+
+</html>

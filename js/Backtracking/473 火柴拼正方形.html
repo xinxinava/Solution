@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //回溯+dfs
+        let cnt;
+        var makesquare = function(matchsticks) {
+            matchsticks.sort((a, b) => a - b);
+            let sum = 0;
+            let len = matchsticks.length;
+            for (let num of matchsticks)
+                sum += num;
+            if (sum % 4 || matchsticks[len - 1] > sum / 4)
+                return false;
+            let target = sum / 4;
+            cnt = new Array(4).fill(0);
+            return dfs(len - 1, matchsticks, target);
+        };
+
+        function dfs(index, nums, target) {
+            if (index == -1) {
+                if (cnt[0] == cnt[1] && cnt[1] == cnt[2] && cnt[2] == cnt[3])
+                    return true;
+                return false;
+            }
+            for (let i = 0; i < 4; i++) {
+                if (cnt[i] + nums[index] > target || (i > 0 && cnt[i] == cnt[i - 1]))
+                    continue;
+                cnt[i] += nums[index];
+                if (dfs(index - 1, nums, target))
+                    return true;
+                cnt[i] -= nums[index];
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

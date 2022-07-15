@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isValidBST = function(root) {
+            let ans = [];
+            inorder(root, ans);
+            for (let i = 1; i < ans.length; i++)
+                if (ans[i] <= ans[i - 1])
+                    return false;
+            return true;
+        };
+
+        function inorder(root, ans) {
+            if (root == null)
+                return;
+            if (root.left)
+                inorder(root.left, ans);
+            ans.push(root.val);
+            if (root.right)
+                inorder(root.right, ans);
+        }
+    </script>
+</body>
+
+</html>

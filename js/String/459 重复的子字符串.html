@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var repeatedSubstringPattern = function(s) {
+            let n = s.length;
+            for (let i = 0; i * 2 <= n; i++) {
+                let sst = new Set();
+                let j = 0;
+                let len = i - j + 1;
+                if (n % len)
+                    continue;
+                while (j < n) {
+                    sst.add(s.substring(j, j + i + 1));
+                    j = j + i + 1;
+                }
+                if (i === n - 1)
+                    return false;
+                if (sst.size === 1)
+                    return true;
+            }
+            return false;
+        };
+    </script>
+
+</body>
+
+</html>

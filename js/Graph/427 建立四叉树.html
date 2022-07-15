@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var construct = function(grid) {
+            let top = 0,
+                bottom = grid.length - 1,
+                left = 0,
+                right = grid[0].length - 1;
+
+            return helper(grid, top, bottom, left, right);
+        };
+
+        function helper(grid, top, bottom, left, right) {
+            if ((left === right && top === bottom) || isSame(grid, top, bottom, left, right))
+                return new Node(grid[top][left], 1);
+            let lenLR = right - left + 1;
+            let lenTB = bottom - top + 1;
+            let node = new Node(1, 0);
+            node.topLeft = helper(grid, top, top + parseInt(lenTB / 2) - 1, left, left + parseInt(lenLR / 2) - 1);
+            node.topRight = helper(grid, top, top + parseInt(lenTB / 2) - 1, left + parseInt(lenLR / 2), right);
+            node.bottomLeft = helper(grid, top + parseInt(lenTB / 2), bottom, left, left + parseInt(lenLR / 2) - 1);
+            node.bottomRight = helper(grid, top + parseInt(lenTB / 2), bottom, left + parseInt(lenLR / 2), right);
+            return node;
+
+        }
+
+        function isSame(grid, top, bottom, left, right) {
+            let a = grid[top][left];
+            for (let i = top; i <= bottom; i++)
+                for (let j = left; j <= right; j++)
+                    if (a !== grid[i][j])
+                        return 0;
+            return 1;
+        }
+    </script>
+</body>
+
+</html>

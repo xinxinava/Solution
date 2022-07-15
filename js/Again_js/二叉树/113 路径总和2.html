@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let res;
+        let path;
+        var pathSum = function(root, targetSum) {
+            res = [];
+            path = [];
+            dfs(root, targetSum);
+            return res;
+        };
+
+        function dfs(root, target) {
+            if (!root)
+                return;
+            path.push(root.val);
+            target -= root.val;
+            if (!root.left && !root.right && target === 0) {
+                res.push([...path]);
+                return;
+            }
+            if (root.left) {
+                dfs(root.left, target);
+                path.pop();
+            }
+            if (root.right) {
+                dfs(root.right, target);
+                path.pop();
+            }
+            return;
+        }
+    </script>
+</body>
+
+</html>

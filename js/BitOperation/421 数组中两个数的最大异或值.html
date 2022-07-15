@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findMaximumXOR = function(nums) {
+            let HIGH_BIT = 30;
+            let x = 0;
+            for (let k = HIGH_BIT; k >= 0; k--) {
+                let seen = new Set();
+                for (let num of nums) {
+                    seen.add(num >> k);
+                }
+
+                let xNext = x * 2 + 1;
+                let found = false;
+                for (let num of nums) {
+                    if (seen.has(xNext ^ (num >> k))) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    x = xNext;
+                } else {
+                    x = xNext - 1;
+                }
+            }
+            return x;
+        };
+    </script>
+</body>
+
+</html>

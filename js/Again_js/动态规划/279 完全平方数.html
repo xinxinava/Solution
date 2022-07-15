@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var numSquares = function(n) {
+            let dp = new Array(n + 1).fill(Number.MAX_SAFE_INTEGER);
+            dp[0] = 0;
+            dp[1] = 1;
+            for (let i = 0; i * i <= n; i++)
+                for (let j = i * i; j <= n; j++) {
+                    dp[j] = Math.min(dp[j], dp[j - i * i] + 1);
+                }
+            return dp[n];
+        };
+    </script>
+</body>
+
+</html>

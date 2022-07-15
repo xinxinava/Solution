@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var subsets = function(nums) {
+            let result = [],
+                path = [];
+            backtracking(0);
+            return result;
+
+            function backtracking(start) {
+                result.push([...path]);
+                if (start >= nums.length)
+                    return;
+                for (let i = start; i < nums.length; i++) {
+                    path.push(nums[i]);
+                    backtracking(i + 1);
+                    path.pop();
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //邻接表+dfs
+        var calcEquation = function(equations, values, queries) {
+            let mmp = new Map();
+            let res = [];
+            let visit = new Map();
+
+            function dfs(src, dst) {
+                if (src == dst)
+                    return 1.0;
+                let adjs = mmp.get(src);
+                for (let i = 0; i < adjs.length; i++) {
+                    let next = adjs[i];
+                    if (!visit.get(next[0])) {
+                        visit.set(next[0], true);
+                        let ret = dfs(next[0], dst);
+                        visit.set(next[0], false);
+                        if (ret !== -1.0)
+                            return next[1] * ret;
+                    }
+                }
+                return -1.0;
+            }
+
+            for (let i = 0; i < equations.length; i++) {
+                let e = equations[i];
+                let v = values[i];
+                if (!mmp.has(e[0])) {
+                    mmp.set(e[0], []);
+                    visit.set(e[0], false);
+                }
+                if (!mmp.has(e[1])) {
+                    mmp.set(e[1], []);
+                    visit.set(e[1], false);
+                }
+                let adj1 = mmp.get(e[0]);
+                let adj2 = mmp.get(e[1]);
+                adj1.push([e[1], v]);
+                adj2.push([e[0], 1 / v]);
+            }
+            for (let q of queries) {
+                if (mmp.has(q[0]) && mmp.has(q[1])) {
+                    visit.set(q[0], true);
+                    res.push(dfs(q[0], q[1]));
+                    visit.set(q[0], false);
+                } else {
+                    res.push(-1.0);
+                }
+            }
+            return res;
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let maxSum;
+        var maxPathSum = function(root) {
+            maxSum = Number.MIN_SAFE_INTEGER;
+            maxGain(root);
+            return maxSum;
+        };
+
+        function maxGain(root) {
+            if (root === null)
+                return 0;
+            let leftGain = Math.max(0, maxGain(root.left));
+            let rightGain = Math.max(0, maxGain(root.right));
+            maxSum = Math.max(maxSum, root.val + leftGain + rightGain);
+            return root.val + Math.max(leftGain, rightGain);
+        }
+    </script>
+</body>
+
+</html>

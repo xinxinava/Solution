@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var rotateRight = function(head, k) {
+            if (head == null)
+                return null;
+            let len = 0;
+            let cur = head;
+            while (cur.next != null) {
+                len++;
+                cur = cur.next;
+            }
+            len++;
+            cur.next = head;
+            k = len - (k % len);
+            for (let i = 0; i < k; i++) {
+                head = head.next;
+                cur = cur.next;
+            }
+            cur.next = null;
+            return head;
+        };
+    </script>
+</body>
+
+</html>

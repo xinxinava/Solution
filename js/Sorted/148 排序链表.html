@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortList = function(head) {
+            return toSort(head, null);
+        };
+
+        function toSort(head, tail) {
+            if (head === null)
+                return head;
+            if (head.next === tail) {
+                head.next = null;
+                return head;
+            }
+            let fast = head,
+                slow = head;
+            while (fast !== tail) {
+                fast = fast.next;
+                slow = slow.next;
+                if (fast !== tail)
+                    fast = fast.next;
+            }
+            let mid = slow;
+            return merge(toSort(head, mid), toSort(mid, tail));
+        }
+
+        function merge(head1, head2) {
+            let hh = new ListNode();
+            let temp = hh,
+                temp1 = head1,
+                temp2 = head2;
+            while (temp1 !== null && temp2 !== null) {
+                if (temp1.val <= temp2.val) {
+                    temp.next = temp1;
+                    temp1 = temp1.next;
+                } else {
+                    temp.next = temp2;
+                    temp2 = temp2.next;
+                }
+                temp = temp.next;
+            }
+            if (temp1 !== null)
+                temp.next = temp1;
+            else if (temp2 !== null)
+                temp.next = temp2;
+            return hh.next;
+        }
+    </script>
+</body>
+
+</html>

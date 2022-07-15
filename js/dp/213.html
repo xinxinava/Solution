@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var rob = function(nums) {
+            if (nums.length == 0) return 0;
+            if (nums.length == 1) return nums[0];
+            let result1 = roblist(nums, 0, nums.length - 2);
+            let result2 = roblist(nums, 1, nums.length - 1);
+            return Math.max(result1, result2);
+        };
+        let roblist = function(nums, start, end) {
+            if (start == end) return nums[start];
+            let dp = new Array(nums.length).fill(0);
+            dp[start] = nums[start];
+            dp[start + 1] = Math.max(nums[start], nums[start + 1]);
+            for (let i = start + 2; i <= end; i++)
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            console.log(dp);
+            return dp[end];
+        };
+        let nums = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+        console.log(rob(nums));
+    </script>
+</body>
+
+</html>

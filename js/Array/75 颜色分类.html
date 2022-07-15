@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortColors = function(nums) {
+            let low = 0,
+                high = nums.length - 1;
+            let nums2 = false;
+            while (low < high) {
+                if (nums[low] == 2) {
+                    swap(nums, low, high);
+                    high--;
+                    nums2 = true;
+                } else {
+                    low++;
+                }
+            }
+            low = 0;
+            while (low < high) {
+                if (nums[high] == 0) {
+                    swap(nums, low, high);
+                    low++;
+                } else {
+                    high--;
+                }
+            }
+        };
+
+        function swap(nums, low, high) {
+            let temp = nums[low];
+            nums[low] = nums[high];
+            nums[high] = temp;
+        }
+    </script>
+</body>
+
+</html>

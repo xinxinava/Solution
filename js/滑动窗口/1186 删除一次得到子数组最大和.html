@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maximumSum = function(arr) {
+            let n = arr.length;
+            if (n < 2)
+                return arr[0];
+            let dp1 = arr[0];
+            let dp2 = arr[0];
+            let res = arr[0];
+            for (let i = 1; i < n; i++) {
+                let num = arr[i];
+                dp2 = Math.max(dp2 + num, dp1);
+                dp1 = Math.max(dp1 + num, num);
+                res = Math.max(res, dp1, dp2);
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

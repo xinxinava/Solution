@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reverseKGroup = function(head, k) {
+            let hh = new ListNode();
+            hh.next = head;
+            let pre = hh;
+            while (pre.next) {
+                let cur = pre;
+                let count = 0;
+                while (cur.next && count < k) {
+                    cur = cur.next;
+                    count++;
+                }
+                if (cur.next && count == k) {
+                    let temph = pre.next;
+                    let tempr = cur.next;
+                    cur.next = null;
+                    pre.next = reverseK(temph);
+                    temph.next = tempr;
+                    pre = temph;
+                } else if (count == k) {
+                    pre.next = reverseK(pre.next);
+                    break;
+                } else
+                    break;
+            }
+            return hh.next;
+        };
+
+        function reverseK(head) {
+            let hh = new ListNode();
+            while (head) {
+                let temp = head;
+                head = head.next;
+                temp.next = hh.next;
+                hh.next = temp;
+            }
+            return hh.next;
+        }
+    </script>
+</body>
+
+</html>

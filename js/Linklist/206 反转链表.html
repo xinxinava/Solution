@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reverseList = function(head) {
+            if (head == null)
+                return null;
+            let temphead = new ListNode();
+            let cur = head.next;
+            while (cur != null) {
+                head.next = temphead.next;
+                temphead.next = head;
+                head = cur;
+                cur = head.next;
+            }
+            if (head != null) {
+                head.next = temphead.next;
+                temphead.next = head;
+            }
+            return temphead.next;
+        };
+    </script>
+</body>
+
+</html>

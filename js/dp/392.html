@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isSubsequence = function(s, t) {
+            let lens = s.length;
+            let lent = t.length;
+            if (lens == 0) return true;
+            if (lent == 0 || lens > lent) return false;
+            let dp = new Array(lent + 1).fill(0).map(() => new Array(lens + 1).fill(0));
+            for (let i = 1; i <= lent; i++)
+                for (let j = 1; j <= lens; j++) {
+                    if (t[i - 1] == s[j - 1])
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                    else
+                        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            if (dp[lent][lens] == lens)
+                return true;
+            return false;
+        };
+        let s = "axc",
+            t = "ahbgdc";
+        console.log(isSubsequence(s, t));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Initialize your data structure here.
+         */
+        var MyLinkedList = function() {
+            this.head = null;
+            this.len = 0;
+        };
+
+        function ListNode(val) {
+            this.val = val;
+            this.next = null;
+        }
+
+        /**
+         * Get the value of the index-th node in the linked list. If the index is invalid, return -1. 
+         * @param {number} index
+         * @return {number}
+         */
+        MyLinkedList.prototype.get = function(index) {
+            if (index < 0 || index > this.len - 1)
+                return -1;
+            let node = this.head;
+            while (index != 0) {
+                node = node.next;
+                index--;
+            }
+            return node.val;
+        };
+
+        /**
+         * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. 
+         * @param {number} val
+         * @return {void}
+         */
+        MyLinkedList.prototype.addAtHead = function(val) {
+            let node = new ListNode(val);
+            node.next = this.head;
+            this.head = node;
+            this.len++;
+        };
+
+        /**
+         * Append a node of value val to the last element of the linked list. 
+         * @param {number} val
+         * @return {void}
+         */
+        MyLinkedList.prototype.addAtTail = function(val) {
+            let node = new ListNode(val);
+            if (this.head == null) {
+                this.head = node;
+                this.len++;
+                return;
+            }
+            let cur = this.head;
+            while (cur.next != null)
+                cur = cur.next;
+            cur.next = node;
+            this.len++;
+        };
+
+        /**
+         * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. 
+         * @param {number} index 
+         * @param {number} val
+         * @return {void}
+         */
+        MyLinkedList.prototype.addAtIndex = function(index, val) {
+            if (index <= 0)
+                return this.addAtHead(val);
+            if (index == this.len)
+                return this.addAtTail(val);
+            let cur = this.head;
+            while (index != 1) {
+                cur = cur.next;
+                index--;
+            }
+            let newnode = new ListNode(val);
+            newnode.next = cur.next;
+            cur.next = newnode;
+            this.len++;
+        };
+
+        /**
+         * Delete the index-th node in the linked list, if the index is valid. 
+         * @param {number} index
+         * @return {void}
+         */
+        MyLinkedList.prototype.deleteAtIndex = function(index) {
+            if (index < 0 || index > this.len - 1)
+                return;
+            if (index == 0) {
+                this.head = this.head.next;
+                this.len--;
+                return;
+            }
+            let node = this.head;
+            let myindex = index;
+            while (index != 1) {
+                node = node.next;
+                index--;
+            }
+            node.next = node.next.next;
+            this.len--;
+        };
+
+        /**
+         * Your MyLinkedList object will be instantiated and called as such:
+         * var obj = new MyLinkedList()
+         * var param_1 = obj.get(index)
+         * obj.addAtHead(val)
+         * obj.addAtTail(val)
+         * obj.addAtIndex(index,val)
+         * obj.deleteAtIndex(index)
+         */
+    </script>
+</body>
+
+</html>

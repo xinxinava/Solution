@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let res, path;
+        var partition = function(s) {
+            res = [];
+            path = [];
+            backtracking(s, 0);
+            return res;
+        };
+
+        function backtracking(s, startidx) {
+            if (startidx >= s.length) {
+                res.push([...path]);
+                return;
+            }
+            for (let i = startidx; i < s.length; i++) {
+                if (isPartition(s, startidx, i)) {
+                    path.push(s.substr(startidx, i - startidx + 1));
+                } else {
+                    continue;
+                }
+                backtracking(s, i + 1);
+                path.pop();
+            }
+        }
+
+        function isPartition(s, start, end) {
+            for (let i = start, j = end; i < j; i++, j--) {
+                if (s[i] !== s[j])
+                    return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

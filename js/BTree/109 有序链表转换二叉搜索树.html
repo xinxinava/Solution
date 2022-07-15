@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortedListToBST = function(head) {
+            return build(head, null);
+        };
+
+        function build(left, right) {
+            if (left === right)
+                return null;
+            let mid = getmid(left, right);
+            let root = new TreeNode(mid.val);
+            root.left = build(left, mid);
+            root.right = build(mid.next, right);
+            return root;
+        }
+
+        function getmid(left, right) {
+            let slow = left;
+            let fast = left;
+            while (fast != right && fast.next != right) {
+                fast = fast.next;
+                fast = fast.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+    </script>
+</body>
+
+</html>

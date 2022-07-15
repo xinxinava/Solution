@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var topKFrequent = function(nums, k) {
+            let mmp = new Map();
+            for (let i = 0; i < nums.length; i++) {
+                if (!mmp.has(nums[i])) {
+                    mmp.set(nums[i], 1);
+                } else {
+                    let count = mmp(nums[i]);
+                    mmp.set(nums[i], count + 1);
+                }
+            }
+            let ans = Array.from(mmp);
+            ans.sort((a, b) => b[1] - a[1]);
+            let result = [];
+            for (let i = 0; i < k; i++) {
+                result.push(ans[i][1]);
+            }
+            return result;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+
+        /**
+         * Encodes a tree to a single string.
+         *
+         * @param {TreeNode} root
+         * @return {string}
+         */
+        var serialize = function(root) {
+            if (!root)
+                return "";
+            let arr = [];
+
+            function preorder(root) {
+                if (root) {
+                    arr.push(root.val);
+                    preorder(root.left);
+                    preorder(root.right);
+                }
+            }
+            preorder(root);
+            return arr.join(' ');
+        };
+
+        /**
+         * Decodes your encoded data to tree.
+         *
+         * @param {string} data
+         * @return {TreeNode}
+         */
+        var deserialize = function(data) {
+            let preorder = data.split(' ').filter(v => v);
+            let inorder = [...preorder].sort((a, b) => a - b);
+
+            function build(preorder, inorder) {
+                if (!preorder.length || !inorder.length)
+                    return null;
+                let rootVal = preorder[0];
+                let root = new TreeNode(rootVal);
+                let inIndex = inorder.indexOf(rootVal);
+                if (inIndex !== -1) {
+                    preorder.shift();
+                    root.left = build(preorder, inorder.slice(0, inIndex));
+                    root.right = build(preorder, inorder.slice(inIndex + 1));
+                }
+                return root;
+            }
+            return build(preorder, inorder);
+        };
+
+        /**
+         * Your functions will be called as such:
+         * deserialize(serialize(root));
+         */
+    </script>
+</body>
+
+</html>

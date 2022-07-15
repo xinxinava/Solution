@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var buildTree = function(inorder, postorder) {
+            if (inorder.length == 0 || postorder.length == 0) return null;
+            return traversal(inorder, 0, inorder.length, postorder, 0, postorder.length);
+        };
+        let traversal = function(inorder, inorderBegin, inorderEnd, postorder, postorderBegin, postorderEnd) {
+            if (postorderBegin == postorderEnd) return null;
+            let rootvalue = postorder[postorderEnd - 1];
+            let root = new TreeNode(rootvalue);
+            if (postorderEnd - postorderBegin == 1) return root;
+            let delimiterIndex;
+            for (delimiterIndex = inorderBegin; delimiterIndex < inorderEnd; delimiterIndex++) {
+                if (inorder[delimiterIndex] == rootvalue)
+                    break;
+            }
+            root.left = traversal(inorder, inorderBegin, delimiterIndex, postorder, postorderBegin, postorderBegin + delimiterIndex - inorderBegin);
+            root.right = traversal(inorder, delimiterIndex + 1, inorderEnd, postorder, postorderBegin + delimiterIndex - inorderBegin, postorderEnd - 1);
+            return root;
+        }
+    </script>
+</body>
+
+</html>

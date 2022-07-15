@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //单调栈
+        var find132pattern = function(nums) {
+            let len = nums.length;
+            let mid = -Infinity;
+            let stk = [];
+            for (let i = len - 1; i >= 0; i--) {
+                if (mid > nums[i])
+                    return true;
+                while (stk.length && stk[stk.length - 1] < nums[i])
+                    mid = stk.pop();
+                stk.push(nums[i]);
+            }
+            return false;
+        };
+    </script>
+</body>
+
+</html>

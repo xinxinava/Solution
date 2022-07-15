@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var longestPalindrome = function (s) {
+            if (s.length == 0)
+                return "";
+            // console.log(s.length);
+            let maxPali = "";
+            let len = s.length;
+            for (let i = 0; i < len; i++) {
+                for (let j = i; j < len; j++) {
+                    if (s[i] == s[j] && isPali(s.substring(i, j + 1))) {
+                        maxPali = (s.substring(i, j + 1).length > maxPali.length) ? s.substring(i, j + 1) : maxPali;
+                        // console.log(s.substring(i, j + 1));
+                    }
+                }
+            }
+            return maxPali;
+        };
+        var isPali = function (s) {
+            let len = s.length;
+            for (let i = 0; i < len / 2; i++) {
+                if (s[i] != s[len - 1 - i])
+                    return false;
+            }
+            return true;
+        }
+        let s = "abcba";
+        // console.log(s.substring(0, 2));
+        console.log(longestPalindrome(s));
+
+    </script>
+</body>
+
+</html>

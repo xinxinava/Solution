@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxCount = function(m, n, ops) {
+            let minr = Number.MAX_SAFE_INTEGER;
+            let minc = Number.MAX_SAFE_INTEGER;
+            for (let i = 0; i < ops.length; i++) {
+                minr = Math.min(ops[i][0], minr);
+                minc = Math.min(ops[i][1], minc);
+            }
+            if (ops.length == 0)
+                return m * n;
+            return minr * minc;
+        };
+    </script>
+</body>
+
+</html>

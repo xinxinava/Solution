@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var originalDigits = function(s) {
+            let dig = new Array(26).fill(0);
+            let ac = 'a'.charCodeAt();
+            for (let i = 0; i < s.length; i++) {
+                dig[s[i].charCodeAt() - ac]++;
+            }
+            let out = new Array(10).fill(0);
+            out[0] = dig['z'.charCodeAt() - ac];
+            out[2] = dig['w'.charCodeAt() - ac];
+            out[4] = dig['u'.charCodeAt() - ac];
+            out[6] = dig['x'.charCodeAt() - ac];
+            out[8] = dig['g'.charCodeAt() - ac];
+            out[3] = dig['h'.charCodeAt() - ac] - out[8];
+            out[7] = dig['s'.charCodeAt() - ac] - out[6];
+            out[5] = dig['v'.charCodeAt() - ac] - out[7];
+            out[1] = dig['o'.charCodeAt() - ac] - out[0] - out[2] - out[4];
+            out[9] = dig['i'.charCodeAt() - ac] - out[5] - out[6] - out[8];
+            let ans = [];
+            for (let i = 0; i < out.length; i++)
+                for (let j = 0; j < out[i]; j++)
+                    ans.push(i + "");
+            return ans.join('');
+        };
+    </script>
+</body>
+
+</html>

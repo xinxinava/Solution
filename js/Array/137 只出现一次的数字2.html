@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var singleNumber = function(nums) {
+            let mmp = new Map();
+            let result = nums[0];
+            for (let num of nums) {
+                mmp.set(num, (mmp.get(num) || 0) + 1);
+            }
+            for (let [key, value] of mmp.entries()) {
+                if (value == 1) {
+                    result = key;
+                    break;
+                }
+            }
+            return result;
+        };
+    </script>
+</body>
+
+</html>

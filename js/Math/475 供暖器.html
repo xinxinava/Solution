@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findRadius = function(houses, heaters) {
+            houses.sort((a, b) => a - b);
+            heaters.sort((a, b) => a - b);
+            let maxn = Number.MIN_SAFE_INTEGER;
+            for (let i = 0, j = 0; i < houses.length && j < heaters.length;) {
+                let temp = 0;
+                if (houses[i] <= heaters[j]) {
+                    temp = heaters[j] - houses[i];
+                    i++;
+                } else if (j < heaters.length - 1) {
+                    temp = Math.min(heaters[j + 1] - houses[i], houses[i] - heaters[j]);
+                    if (houses[i] < heaters[j + 1])
+                        i++;
+                    else
+                        j++;
+                } else if (j == heaters.length - 1) {
+                    temp = Math.abs(heaters[j] - houses[i])
+                    i++;
+                }
+                maxn = Math.max(maxn, temp);
+            }
+            return maxn;
+        };
+    </script>
+
+</body>
+
+</html>

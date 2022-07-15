@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findWords = function(words) {
+            let ans = [];
+
+            let s1 = new Set("qwertyuiop".split(''));
+            let s2 = new Set("asdfghjkl".split(''));
+            let s3 = new Set("zxcvbnm".split(''));
+            let singleCheck = (w, set) => w.split('').every(v => set.has(v.toLocaleLowerCase()));
+            let check = (w) => {
+                return singleCheck(w, s1) || singleCheck(w, s2) || singleCheck(w, s3);
+            }
+
+            return words.filter(w => check(w));
+        };
+    </script>
+</body>
+
+</html>

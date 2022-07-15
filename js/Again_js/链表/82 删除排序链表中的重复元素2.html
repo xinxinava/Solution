@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var deleteDuplicates = function(head) {
+            if (head == null || (head && head.next == null))
+                return head;
+            let hair = new ListNode();
+            hair.next = head;
+            let pre = hair;
+            let hh = head;
+            let cur = head.next;
+            while (cur) {
+                if (hh.val == cur.val) {
+                    while (cur && hh.val == cur.val) {
+                        cur = cur.next;
+                    }
+                    pre.next = cur;
+                    hh = pre.next;
+                    if (cur)
+                        cur = cur.next;
+                } else {
+                    pre = pre.next;
+                    hh = hh.next;
+                    cur = cur.next;
+                }
+            }
+            return hair.next;
+        };
+    </script>
+</body>
+
+</html>

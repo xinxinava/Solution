@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isInterleave = function(s1, s2, s3) {
+            let len1 = s1.length;
+            let len2 = s2.length;
+            let len3 = s3.length;
+            if (len3 !== len1 + len2)
+                return false;
+            let dp = new Array(len1 + 1).fill(false).map(() => new Array(len2 + 1).fill(false));
+            dp[0][0] = true;
+            for (let i = 0; i <= len1; i++) {
+                for (let j = 0; j <= len2; j++) {
+                    let index = i + j - 1;
+                    if (i > 0) {
+                        dp[i][j] |= dp[i - 1][j] && (s1[i - 1] == s3[index]);
+                    }
+                    if (j > 0) {
+                        dp[i][j] |= dp[i][j - 1] && (s2[j - 1] == s3[index]);
+                    }
+                }
+            }
+            return dp[len1][len2];
+        };
+    </script>
+</body>
+
+</html>

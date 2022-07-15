@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findDuplicates = function(nums) {
+            let n = nums.length;
+            let ans = [];
+            for (let i = 0; i < n; i++) {
+                let j = (nums[i] - 1) % n;
+                nums[j] += n;
+            }
+            for (let i = 0; i < n; i++) {
+                if (nums[i] > 2 * n)
+                    ans.push(i + 1);
+            }
+            return ans;
+        };
+    </script>
+</body>
+
+</html>

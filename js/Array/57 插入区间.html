@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var insert = function(intervals, newInterval) {
+            let left = newInterval[0];
+            let right = newInterval[1];
+            let placed = false;
+            let result = [];
+            for (let i = 0; i < intervals.length; i++) {
+                if (intervals[i][0] > right) {
+                    if (!placed) {
+                        result.push([left, right]);
+                        placed = true;
+                    }
+                    result.push(intervals[i]);
+                } else if (intervals[i][1] < left) {
+                    result.push(intervals[i]);
+                } else {
+                    left = Math.min(left, intervals[i][0]);
+                    right = Math.max(right, intervals[i][1]);
+                }
+            }
+            if (!placed)
+                result.push([left, right]);
+            return result;
+        };
+    </script>
+</body>
+
+</html>

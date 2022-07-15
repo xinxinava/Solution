@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lowestCommonAncestor = function(root, p, q) {
+            if (root === p || root == q || root === null)
+                return root;
+            let l = lowestCommonAncestor(root.left, p, q);
+            let r = lowestCommonAncestor(root.right, p, q);
+            if (l && r)
+                return root;
+            if (!l && r)
+                return r;
+            if (l && !r)
+                return l;
+            return null;
+        };
+    </script>
+</body>
+
+</html>

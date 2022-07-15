@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findSecondMinimumValue = function(root) {
+            if (root === null)
+                return null;
+            let ans = [];
+            dfs(root, ans);
+            ans.sort((a, b) => a - b);
+            for (let i = 1; i < ans.length; i++) {
+                if (ans[i - 1] !== ans[i])
+                    return ans[i];
+            }
+            return -1;
+        };
+
+        function dfs(root, ans) {
+            if (root === null)
+                return;
+            dfs(root.left, ans);
+            ans.push(root.val);
+            dfs(root.right, ans);
+        }
+        var findSecondMinimumValue = function(root) {
+            let ans = -1;
+            let rootVal = root.val;
+
+            function dfs(root) {
+                if (root === null)
+                    return;
+                if (ans !== -1 && root.val >= ans) {
+                    return;
+                }
+                if (root.val > rootVal)
+                    ans = root.val;
+                dfs(root.left);
+                dfs(root.right);
+            }
+            dfs(root);
+            return ans;
+        }
+    </script>
+</body>
+
+</html>

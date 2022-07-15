@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var restoreIpAddresses = function(s) {
+            let res = [],
+                path = [];
+            backtracking(0);
+            return res;
+
+            function backtracking(start) {
+                if (path.length > 4)
+                    return;
+                if (path.length === 4 && start === s.length) {
+                    res.push(path.join('.'));
+                    return;
+                }
+                for (let i = start; i < s.length; i++) {
+                    let str = s.substr(start, i - start + 1);
+                    if (str.length > 3 || +str > 255)
+                        break;
+                    if (str.length > 1 && str[0] === "0")
+                        break;
+                    path.push(str);
+                    backtracking(i + 1);
+                    path.pop();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var flatten = function(head) {
+            dfs(head);
+            return head;
+        };
+
+        function dfs(head) {
+            if (head == null)
+                return null;
+            let ans = null;
+            if (head.child) {
+                let t1 = head.child;
+                let t2 = dfs(head.child);
+                let t3 = head.next;
+                t1.prev = head;
+                head.next = t1;
+                head.child = null;
+                t2.next = t3;
+                if (t3 === null)
+                    return t2;
+                t3.prev = t2;
+                ans = dfs(t3);
+            } else {
+                if (head.next == null)
+                    return head;
+                ans = dfs(head.next);
+            }
+            return ans;
+        }
+    </script>
+</body>
+
+</html>

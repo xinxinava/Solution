@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var solveNQueens = function(n) {
+            let result = [];
+            let box = new Array(n);
+            for (let i = 0; i < n; i++)
+                box[i] = new Array(n).fill('.');
+            backtracking(0);
+            return result;
+
+            function backtracking(row) {
+                if (row === box.length) {
+                    let str = box.slice();
+                    for (let i = 0; i < n; i++)
+                        str[i] = str[i].join('');
+                    result.push(str);
+                    return;
+                }
+                for (let col = 0; col < n; col++) {
+                    if (isVaild(row, col)) {
+                        box[row][col] = "Q";
+                        backtracking(row + 1);
+                        box[row][col] = ".";
+                    }
+                }
+            }
+
+            function isVaild(row, col) {
+                for (let i = 0; i < row; i++) {
+                    if (box[i][col] === 'Q')
+                        return false;
+                }
+                for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+                    if (box[i][j] === "Q")
+                        return false;
+
+                }
+                for (let i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+                    if (box[i][j] === "Q")
+                        return false;
+                }
+                return true;
+            }
+        };
+        console.log(solveNQueens(4));
+    </script>
+</body>
+
+</html>

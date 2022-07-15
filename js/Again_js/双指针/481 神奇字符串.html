@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var magicalString = function(n) {
+            let s = "122";
+            let [slow, fast] = [2, 3];
+            let is1 = true;
+            let count1 = 1;
+            while (fast < n) {
+                if (s[slow] === '1') {
+                    if (is1)
+                        s += "1";
+                    else
+                        s += "2";
+                    fast++;
+                } else if (s[slow] === '2') {
+                    if (is1)
+                        s += "11";
+                    else
+                        s += "22";
+                    fast += 2;
+                }
+                slow++;
+                is1 = !is1;
+            }
+            for (let i = 0; i < n; i++)
+                if (s[i] === '1')
+                    count1++;
+            return count1;
+        };
+    </script>
+</body>
+
+</html>

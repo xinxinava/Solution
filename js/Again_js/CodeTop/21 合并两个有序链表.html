@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var mergeTwoLists = function(list1, list2) {
+            let hh = new ListNode();
+            let p = hh;
+            while (list1 || list2) {
+                if (list1 && list2) {
+                    if (list1.val > list2.val) {
+                        p.next = list2;
+                        list2 = list2.next;
+                    } else {
+                        p.next = list1;
+                        list1 = list1.next;
+                    }
+                    p = p.next;
+                    p.next = null;
+                } else if (list1) {
+                    p.next = list1;
+                    break;
+                } else if (list2) {
+                    p.next = list2;
+                    break;
+                }
+            }
+            return hh.next;
+        };
+    </script>
+
+</body>
+
+</html>

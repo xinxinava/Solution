@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var canPartition = function(nums) {
+            let dp = new Array(10001).fill(0);
+            let sum = 0;
+            for (let i = 0; i < nums.length; i++)
+                sum += nums[i];
+            if (sum % 2 != 0) return false;
+            sum = sum / 2;
+            for (let i = 0; i < nums.length; i++)
+                for (let j = sum; j >= nums[i]; j--)
+                    dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+            if (dp[sum] == sum)
+                return true;
+            return false;
+        };
+
+        let nums = [11, 2, 3];
+        console.log(canPartition(nums));
+    </script>
+</body>
+
+</html>

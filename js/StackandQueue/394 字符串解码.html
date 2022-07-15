@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var decodeString = function(s) {
+            let numstk = [];
+            let strstk = [];
+            let num = 0;
+            let str = "";
+            for (let i = 0; i < s.length; i++) {
+                if (!isNaN(s[i])) {
+                    num = num * 10 + Number(s[i]);
+                } else if (s[i] === '[') {
+                    strstk.push(str);
+                    str = '';
+                    numstk.push(num);
+                    num = 0;
+                } else if (s[i] === ']') {
+                    let rep = numstk.pop();
+                    str = strstk.pop() + str.repeat(rep);
+                } else {
+                    str += s[i];
+                }
+            }
+            return str;
+        };
+    </script>
+</body>
+
+</html>

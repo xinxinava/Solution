@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var longestConsecutive = function(nums) {
+            let len = nums.length;
+            let sst = new Set();
+            for (let i = 0; i < len; i++)
+                sst.add(nums[i]);
+            let longLen = 0;
+            for (let i = 0; i < len; i++) {
+                if (!sst.has(nums[i] - 1)) {
+                    let curNum = nums[i];
+                    let curLong = 1;
+                    while (sst.has(curNum + 1)) {
+                        curNum = curNum + 1;
+                        curLong = curLong + 1;
+                    }
+                    longLen = Math.max(longLen, curLong);
+                }
+
+            }
+            return longLen;
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findRightInterval = function(intervals) {
+            let res = [];
+            for (let i = 0; i < intervals.length; i++) {
+                let minn = Number.MAX_SAFE_INTEGER;
+                let index = 0
+                for (let j = 0; j < intervals.length; j++) {
+                    if (intervals[j][0] >= intervals[i][1] && intervals[j][0] <= minn) {
+                        minn = intervals[j][0];
+                        index = j;
+                    }
+                }
+                if (minn == Number.MAX_SAFE_INTEGER)
+                    res.push(-1);
+                else
+                    res.push(index);
+            }
+            return res;
+        };
+    </script>
+
+</body>
+
+</html>

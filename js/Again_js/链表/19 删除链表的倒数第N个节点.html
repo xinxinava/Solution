@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //快慢指针，双指针
+        var removeNthFromEnd = function(head, n) {
+            let hh = new ListNode();
+            hh.next = head;
+            let slow = hh,
+                fast = hh;
+            let count = 0;
+            while (fast && count < n) {
+                fast = fast.next;
+                count++;
+            }
+            while (fast.next != null) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            if (count == n)
+                slow.next = slow.next.next;
+            return hh.next;
+        };
+    </script>
+</body>
+
+</html>

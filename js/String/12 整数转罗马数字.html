@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var intToRoman = function(num) {
+            let ge = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+            let shi = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+            let bai = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+            let qian = ["", "M", "MM", "MMM"];
+            let result = [];
+            result.push(qian[Math.floor(num / 1000)]);
+            num = num % 1000;
+            result.push(bai[Math.floor(num / 100)]);
+            num = num % 100;
+            result.push(shi[Math.floor(num / 10)]);
+            num = num % 10;
+            result.push(ge[Math.floor(num)]);
+            return result.join('');
+        };
+    </script>
+</body>
+
+</html>

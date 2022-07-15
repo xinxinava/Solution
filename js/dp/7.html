@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    //     var reverse = function (x) {
+    //         let nums = x + "";
+    //         let renums = "";
+    //         let flag = false;
+    //         for (let i = nums.length - 1; i >= 1; i--) {
+    //             if (!flag && nums[i] == '0')
+    //                 continue;
+    //             flag = true;
+    //             renums += nums[i];
+    //         }
+    //         if (nums[0] == '-')
+    //             renums = "-" + renums;
+    //         else
+    //             renums = renums + nums[0];
+    //         renums = Number(renums);
+    //         if (renums > Math.pow(2, 31) - 1 || renums < -Math.pow(2, 31))
+    //             renums = 0;
+    //         return renums;
+    //     };
+
+    //     let x = 1534236469;
+    //     reverse(x);
+    //     // 1534236469
+    // </script>
+    <script>
+        var reverse = function (x) {
+            let nums = parseInt(x.toString().split("").reverse().join(""));
+            console.log(x.toString().split("").reverse().join(""))
+            if (x < 0)
+                nums = -nums;
+            return nums > Math.pow(2, 31) - 1 || nums < -Math.pow(2, 31) ? 0 : nums;
+        };
+        let x = 15342;
+        console.log(reverse(x));
+    </script>
+</body>
+
+</html>

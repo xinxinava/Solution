@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var climbStairs = function(n) {
+            let dp = new Array(n + 1).fill(0);
+            dp[1] = 1;
+            dp[2] = 2;
+            for (let i = 3; i <= n; i++)
+                dp[i] = dp[i - 1] + dp[i - 2];
+            return dp[n];
+        };
+        var climbStairs = function(n) {
+            let [a1, a2] = [1, 2];
+            let res = 0;
+            for (let i = 3; i <= n; i++) {
+                res = a1 + a2;
+                a1 = a2;
+                a2 = res;
+            }
+            return res;
+        }
+    </script>
+
+</body>
+
+</html>

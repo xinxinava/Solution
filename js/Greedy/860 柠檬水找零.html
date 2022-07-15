@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lemonadeChange = function(bills) {
+            let money5 = 0,
+                money10 = 0,
+                money20 = 0;
+            for (let i = 0; i < bills.length; i++) {
+                if (bills[i] == 5)
+                    money5++;
+                else if (bills[i] == 10) {
+                    money10++;
+                    if (money5 > 0) {
+                        money5--;
+                        continue;
+                    }
+                    return false;
+                } else {
+                    money20++;
+                    if (money10 >= 1 && money5 >= 1) {
+                        money10--;
+                        money5++;
+                        continue;
+                    }
+                    if (money5 >= 3) {
+                        money5 -= 3;
+                        continue;
+                    }
+                    return false;
+                }
+            }
+            return true;
+        };
+    </script>
+</body>
+
+</html>

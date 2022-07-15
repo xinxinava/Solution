@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxFreq = function(s, maxLetters, minSize, maxSize) {
+            let mmp = new Map();
+            let res = 0;
+            for (let i = 0; i <= s.length - minSize; i++) {
+                let substr = s.substr(i, minSize);
+                if (checkNum(substr, maxLetters)) {
+                    let newVal = (mmp.get(substr) || 0) + 1;
+                    mmp.set(substr, newVal);
+                    res = Math.max(res, newVal);
+                }
+            }
+            return res;
+        };
+
+        function checkNum(str, maxLetters) {
+            let sst = new Set();
+            for (let i = 0; i < str.length; i++)
+                sst.add(str[i]);
+            return sst.size <= maxLetters;
+        }
+    </script>
+</body>
+
+</html>

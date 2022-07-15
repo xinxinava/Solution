@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var zigzagLevelOrder = function(root) {
+            if (root === null)
+                return [];
+            let queue = [];
+            queue.push(root);
+            let res = [];
+            let flag = 0;
+            while (queue.length) {
+                let curLen = queue.length;
+                let ans = [];
+                for (let i = 0; i < curLen; i++) {
+                    let temp = queue.shift();
+                    ans.push(temp.val);
+                    if (temp.left)
+                        queue.push(temp.left);
+                    if (temp.right)
+                        queue.push(temp.right);
+                }
+                if (flag)
+                    ans.reverse();
+                flag = !flag;
+                res.push(ans);
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

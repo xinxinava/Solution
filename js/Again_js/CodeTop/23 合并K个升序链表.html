@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var mergeKLists = function(lists) {
+            let ans = [];
+            for (let i = 0; i < lists.length; i++) {
+                let hh = lists[i];
+                while (hh) {
+                    let temp = hh;
+                    hh = hh.next;
+                    temp.next = null;
+                    ans.push(temp);
+                }
+            }
+            ans.sort((a, b) => a.val - b.val);
+            let head = new ListNode();
+            let pre = head;
+            for (let i = 0; i < ans.length; i++) {
+                pre.next = ans[i];
+                pre = pre.next;
+            }
+            return head.next;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var totalFruit = function(fruits) {
+            let k = 2;
+            let res = 0;
+            let left = 0;
+            let maxn = Math.max(...fruits);
+            let dp = new Array(maxn + 1).fill(0);
+            for (let right = 0; right < fruits.length; right++) {
+                if (dp[fruits[right]] === 0)
+                    k--;
+                dp[fruits[right]]++;
+                while (k < 0) {
+                    dp[fruits[left]]--;
+                    if (dp[fruits[left]] === 0) k++;
+                    left++;
+                }
+                res = Math.max(res, right - left + 1);
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

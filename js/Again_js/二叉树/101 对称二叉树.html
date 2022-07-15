@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //递归
+        var isSymmetric = function(root) {
+            if (root == null)
+                return true;
+            return compare(root.left, root.right);
+        };
+
+        function compare(left, right) {
+            if (!left && !right)
+                return true;
+            if ((left && !right) || (!left && right) || (left.val !== right.val))
+                return false;
+            return compare(left.left, right.right) && compare(left.right, right.left);
+        }
+        //迭代
+        function isSymmetric(root) {
+            return check(root, root);
+        }
+
+        function check(u, v) {
+            let q = [];
+            q.push(u);
+            q.push(v);
+            while (q.length) {
+                u = q.shift();
+                v = q.shift();
+                if (!u && !v)
+                    continue;
+                if ((!u && v) || (u && !v) || (u.val !== v.val))
+                    return false;
+                q.push(u.left);
+                q.push(v.right);
+                q.push(u.right);
+                q.push(v.left);
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

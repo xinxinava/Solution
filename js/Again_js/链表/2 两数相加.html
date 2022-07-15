@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var addTwoNumbers = function(l1, l2) {
+            let h1 = l1,
+                h2 = l2;
+            let carry = 0;
+            let head = new ListNode(0);
+            let rear = head;
+            while (h1 || h2 || carry) {
+                let num1 = 0,
+                    num2 = 0,
+                    sum = 0;
+                if (h1) {
+                    num1 = h1.val;
+                    h1 = h1.next;
+                }
+                if (h2) {
+                    num2 = h2.val;
+                    h2 = h2.next;
+                }
+                sum = num1 + num2 + carry;
+                let newNode = new ListNode(sum % 10);
+                carry = parseInt(sum / 10);
+                rear.next = newNode;
+                rear = rear.next;
+            }
+            return head.next;
+        };
+    </script>
+</body>
+
+</html>

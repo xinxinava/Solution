@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findLUSlength = function(strs) {
+            strs.sort((a, b) => (b.length - a.length));
+            console.log(strs);
+            for (let i = 0; i < strs.length; i++) {
+                let isSub = false;
+                for (let j = 0; j < strs.length && strs[i].length <= strs[j].length; j++) { //i是否为j的子串
+                    if (i !== j && isSubStr(strs[i], strs[j])) {
+                        isSub = true;
+                        break;
+                    }
+                }
+                if (!isSub)
+                    return strs[i].length;
+            }
+            return -1;
+        };
+
+        function isSubStr(a, b) {
+            let i = 0;
+            for (let j = 0; j < b.length; j++) {
+                if (i < a.length && b[j] === a[i])
+                    i++;
+            }
+            return i === a.length;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reverseBetween = function(head, left, right) {
+            let hh = new ListNode();
+            hh.next = head;
+            let pre = hh;
+            for (let i = 0; i < left - 1; i++) {
+                pre = pre.next;
+            }
+            let cur = pre.next;
+            //反转部分头插法
+            for (let i = 0; i < right - left; i++) {
+                let temp = cur.next;
+                cur.next = temp.next;
+                temp.next = pre.next;
+                pre.next = temp;
+            }
+            return hh.next;
+        };
+    </script>
+</body>
+
+</html>

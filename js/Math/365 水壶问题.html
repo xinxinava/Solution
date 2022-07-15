@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var canMeasureWater = function(jug1Capacity, jug2Capacity, targetCapacity) {
+            let x = jug1Capacity,
+                y = jug2Capacity,
+                z = targetCapacity;
+            let stk = [
+                [0, 0]
+            ];
+            let sst = new Set();
+            while (stk.length) {
+                let [remainX, remainY] = stk.pop();
+                if (remainX === z || remainY === z || remainX + remainY === z)
+                    return true;
+                if (sst.has(remainX + "#" + remainY))
+                    continue;
+                sst.add(remainX + "#" + remainY);
+                stk.push([x, remainY]);
+                stk.push([remainX, y]);
+                stk.push([0, remainY]);
+                stk.push([remainX, 0]);
+                stk.push([remainX - Math.min(remainX, y - remainY), remainY + Math.min(remainX, y - remainY)]);
+                stk.push([remainX + Math.min(remainY, x - remainX), remainY - Math.min(remainY, x - remainX)]);
+            }
+            return false;
+        };
+    </script>
+</body>
+
+</html>

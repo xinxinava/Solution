@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var divide = function(dividend, divisor) {
+            if (dividend === 0)
+                return 0;
+            let count = 0;
+            let flag = 1;
+            if (dividend <= -2147483648) {
+                if (divisor == 1)
+                    return -2147483648;
+                if (divisor == -1)
+                    return 2147483647;
+            }
+            if (divisor <= -2147483648) {
+                if (dividend == -2147483648)
+                    return 1;
+                else
+                    return 0;
+            }
+
+            if (dividend > 0 && divisor < 0) {
+                dividend = -dividend;
+                flag = 0;
+            } else if (dividend < 0 && divisor > 0) {
+                divisor = -divisor;
+                flag = 0;
+            } else if (dividend > 0 && divisor > 0) {
+                dividend = -dividend;
+                divisor = -divisor;
+            }
+            while (dividend < 0) {
+                dividend = dividend - divisor;
+                count++;
+            }
+            if (dividend > 0)
+                count--;
+            if (!flag)
+                count = -count;
+            return count;
+        };
+    </script>
+</body>
+
+</html>

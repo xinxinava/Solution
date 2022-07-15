@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //递归
+        var inorderTraversal = function(root) {
+            let res = [];
+            traversal(root, res);
+            return res;
+        };
+
+        function traversal(root, res) {
+            if (root === null)
+                return;
+            traversal(root.left, res);
+            res.push(root.val);
+            traversal(root.right, res);
+        }
+        //非递归
+        function inorderTraversal(root) {
+            let stk = [];
+            let res = [];
+            while (root || stk.length) {
+                while (root) {
+                    stk.push(root);
+                    root = root.left;
+                }
+                root = stk.pop();
+                res.push(root.val);
+                root = root.right;
+            }
+            return res;
+        }
+    </script>
+</body>
+
+</html>

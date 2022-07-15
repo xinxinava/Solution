@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxProduct = function(nums) {
+            let len = nums.length;
+            if (len == 0)
+                return 0;
+            let dpmax = new Array(len).fill(0);
+            let dpmin = new Array(len).fill(0);
+            dpmax[0] = nums[0];
+            dpmin[0] = nums[0];
+            let maxpro = nums[0];
+            let minpro = nums[0];
+            for (let i = 1; i < len; i++) {
+                dpmax[i] = Math.max(dpmax[i - 1] * nums[i], dpmin[i - 1] * nums[i], nums[i]);
+                dpmin[i] = Math.min(dpmax[i - 1] * nums[i], dpmin[i - 1] * nums[i], nums[i]);
+            }
+            return Math.max(...dpmax, ...dpmin);
+        };
+    </script>
+</body>
+
+</html>

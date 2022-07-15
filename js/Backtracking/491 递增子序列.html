@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findSubsequences = function(nums) {
+            let result = [],
+                path = [];
+            backtracking(0);
+            return result;
+
+            function backtracking(start) {
+                if (path.length > 1) {
+                    result.push([...path]);
+                }
+                let sst = new Set();
+
+                for (let i = start; i < nums.length; i++) {
+                    if (path.length != 0 && path[path.length - 1] > nums[i] || sst.has(nums[i]))
+                        continue;
+                    sst.add(nums[i]);
+                    path.push(nums[i]);
+                    backtracking(i + 1);
+                    path.pop();
+                }
+            }
+
+        };
+    </script>
+</body>
+
+</html>

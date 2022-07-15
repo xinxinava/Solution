@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findTarget = function(root, k) {
+            if (root === null)
+                return false;
+            let ans = [];
+            inorder(root, ans);
+            if (ans.length < 2)
+                return false;
+            let [i, j] = [0, ans.length - 1];
+            while (i < j) {
+                let sum = ans[i] + ans[j];
+                if (sum === k)
+                    return true;
+                else if (sum > k)
+                    j--;
+                else
+                    i++;
+            }
+            return false;
+        };
+
+        function inorder(root, ans) {
+            if (root === null)
+                return;
+            inorder(root.left, ans);
+            ans.push(root.val);
+            inorder(root.right, ans);
+        }
+        var findTarget = function(root, k) {
+            let sst = new Set();
+            return find(root, k, sst);
+        }
+
+        function find(root, k, sst) {
+            if (root === null)
+                return false;
+            if (sst.has(k - root.val))
+                return true;
+            sst.add(root.val);
+            return find(root.left, k, sst) || find(root.right, k, sst);
+        }
+    </script>
+</body>
+
+</html>

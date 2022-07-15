@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let ans;
+        let mmp;
+        var findDuplicateSubtrees = function(root) {
+            if (root === null)
+                return [];
+            ans = [];
+            mmp = new Map();
+            encode(root);
+            return ans;
+        };
+
+        function encode(root) {
+            if (root === null)
+                return "#";
+            let L = encode(root.left);
+            let R = encode(root.right);
+            let code = root.val.toString() + "," + L + "," + R;
+            if (mmp.get(code) === 1)
+                ans.push(root);
+            mmp.set(code, (mmp.get(code) | 0) + 1);
+            return code;
+        }
+    </script>
+</body>
+
+</html>

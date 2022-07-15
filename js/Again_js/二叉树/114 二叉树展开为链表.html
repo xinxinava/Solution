@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var flatten = function(root) {
+            let ans = [];
+            preorder(root, ans);
+            for (let i = 1; i < ans.length; i++) {
+                ans[i - 1].left = null;
+                ans[i - 1].right = ans[i];
+            }
+        };
+
+        function preorder(root, ans) {
+            if (root === null)
+                return;
+            ans.push(root);
+            preorder(root.left, ans);
+            preorder(root.right, ans);
+        }
+        //非递归，展开和形成同时进行
+        function flatten(root) {
+            if (root === null)
+                return;
+            let stk = [];
+            stk.push(root);
+            let prev = null;
+            while (stk.length) {
+                let curr = stk.pop();
+                if (prev) {
+                    prev.left = null;
+                    prev.right = curr;
+                }
+                if (curr.right)
+                    stk.push(curr.right);
+                if (curr.left)
+                    stk.push(curr.left);
+                prev = curr;
+            }
+        }
+    </script>
+</body>
+
+</html>

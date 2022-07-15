@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var intersection = function(nums1, nums2) {
+            let sst = new Set();
+            let result = new Set();
+            for (let i = 0; i < nums1.length; i++) {
+                sst.add(nums1[i]);
+            }
+            for (let i = 0; i < nums2.length; i++) {
+                if (sst.has(nums2[i]))
+                    result.add(nums2[i]);
+            }
+            return Array.from(result);
+
+        };
+    </script>
+</body>
+
+</html>

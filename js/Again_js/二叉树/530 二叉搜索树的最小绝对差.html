@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var getMinimumDifference = function(root) {
+            let diff = Number.MAX_SAFE_INTEGER;
+            let pre = null;
+
+            function inorder(root) {
+                if (root === null)
+                    return;
+                inorder(root.left);
+                if (pre !== null) {
+                    diff = Math.min(diff, Math.abs(pre.val - root.val));
+                }
+                pre = root;
+                inorder(root.right);
+            }
+            inorder(root);
+            return diff;
+        };
+    </script>
+</body>
+
+</html>

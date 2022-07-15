@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reverseBetween = function(head, left, right) {
+            let hh = new ListNode();
+            hh.next = head;
+            let prel = hh;
+            for (let i = 0; i < left - 1; i++)
+                prel = prel.next;
+            let cur = prel.next;
+            prel.next = null;
+            let prer = cur;
+            for (let i = 0; i < right - left; i++)
+                prer = prer.next;
+            let tail = prer;
+            prer = prer.next;
+            tail.next = null;
+            prel.next = reverseL(cur);
+            cur.next = prer;
+            return hh.next;
+        };
+
+        function reverseL(head) {
+            let hh = new ListNode();
+            while (head) {
+                let temp = head.next;
+                head.next = hh.next;
+                hh.next = head;
+                head = temp;
+            }
+            return hh.next;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var commonChars = function(words) {
+            let count = new Array(26).fill(Number.MAX_VALUE);
+            for (let i = 0; i < words.length; i++) {
+                let other = new Array(26).fill(0);
+                for (let j = 0; j < words[i].length; j++)
+                    other[words[i][j].charCodeAt() - 'a'.charCodeAt()]++;
+                for (let k = 0; k < 26; k++)
+                    count[k] = Math.min(count[k], other[k]);
+            }
+            let result = [];
+            for (let i = 0; i < 26; i++) {
+                for (let j = 0; j < count[i]; j++)
+                    result.push(String.fromCharCode('a'.charCodeAt() + i));
+            }
+            return result;
+        };
+    </script>
+</body>
+
+</html>

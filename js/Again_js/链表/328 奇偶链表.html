@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var oddEvenList = function(head) {
+            if (head == null)
+                return head;
+            let odd = new ListNode();
+            let even = new ListNode();
+            let h1 = odd,
+                h2 = even;
+            let cur = head;
+            while (cur) {
+                h1.next = cur;
+                h1 = h1.next;
+                cur = cur.next;
+                if (cur) {
+                    h2.next = cur;
+                    h2 = h2.next;
+                    cur = cur.next;
+                }
+            }
+            h1.next = even.next;
+            h2.next = null;
+            return odd.next;
+        };
+    </script>
+</body>
+
+</html>

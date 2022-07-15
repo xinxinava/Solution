@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let m, n;
+        var gameOfLife = function(board) {
+            m = board.length;
+            n = board[0].length;
+            for (let i = 0; i < m; i++) {
+                for (let j = 0; j < n; j++) {
+                    board[i][j] = check(board, i, j);
+                }
+            }
+            for (let i = 0; i < m; i++)
+                for (let j = 0; j < n; j++) {
+                    if (board[i][j] == 2)
+                        board[i][j] = 1;
+                    if (board[i][j] == -1)
+                        board[i][j] = 0;
+                }
+
+        };
+
+        function check(board, x, y) {
+            let pair = [
+                [-1, -1],
+                [-1, 0],
+                [-1, 1],
+                [0, -1],
+                [0, 1],
+                [1, -1],
+                [1, 0],
+                [1, 1]
+            ];
+            let count = 0;
+            for (let i = 0; i < 8; i++) {
+                let newx = x + pair[i][0];
+                let newy = y + pair[i][1];
+                if (newx >= 0 && newx < m && newy >= 0 && newy < n) {
+                    if (board[newx][newy] == 1 || board[newx][newy] == -1)
+                        count++;
+                }
+            }
+            if (board[x][y] == 1) {
+                if (count < 2 || count > 3)
+                    return -1;
+                else
+                    return 1;
+            } else {
+                if (count == 3)
+                    return 2;
+                else
+                    return 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

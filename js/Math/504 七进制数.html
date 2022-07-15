@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var convertToBase7 = function(num) {
+            if (num == 0)
+                return "0";
+            let res = [];
+            let index = '+';
+            if (num < 0)
+                index = '-';
+            num = Math.abs(num);
+            while (num > 0) {
+                res.push(num % 7);
+                num = parseInt(num / 7);
+            }
+            if (index === '-')
+                res.push('-');
+            return res.reverse().join('');
+        };
+    </script>
+</body>
+
+</html>

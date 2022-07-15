@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //非递归
+        var binaryTreePaths = function(root) {
+            if (root == null)
+                return [];
+            let node_queue = [root];
+            let path_queue = [root.val.toString()];
+            let res = [];
+            while (node_queue.length) {
+                let node = node_queue.shift();
+                let path = path_queue.shift();
+                if (node.left === null && node.right === null) {
+                    res.push(path);
+                } else {
+                    if (node.left) {
+                        node_queue.push(node.left);
+                        path_queue.push(path + "->" + node.left.val.toString());
+                    }
+                    if (node.right) {
+                        node_queue.push(node.right);
+                        path_queue.push(path + "->" + node.right.val.toString());
+                    }
+                }
+            }
+            return res;
+        }
+
+        //递归
+        var binaryTreePaths = function(root) {
+            let res = [];
+            dfs(root, res, "");
+            return res;
+        };
+
+        function dfs(root, res, path) {
+            if (root) {
+                path = path + root.val.toString();
+                if (root.left === null && root.right === null) {
+                    res.push(path);
+                } else {
+                    path += "->";
+                    dfs(root.left, res, path);
+                    dfs(root.right, res, path);
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var generateMatrix = function(n) {
+            let startx = 0,
+                starty = 0;
+            let mid = parseInt(n / 2);
+            let offset = 1;
+            let loop = parseInt(n / 2);
+            let count = 1;
+            let result = new Array(n).fill(0).map(() => new Array(n).fill(0));
+            while (loop--) {
+                let i = startx,
+                    j = starty;
+                while (j < starty + n - offset)
+                    result[startx][j++] = count++;
+                while (i < startx + n - offset)
+                    result[i++][j] = count++;
+                while (j > starty)
+                    result[i][j--] = count++;
+                while (i > startx)
+                    result[i--][j] = count++;
+                startx++;
+                starty++;
+                offset += 2;
+            }
+            if (n % 2)
+                result[mid][mid] = count;
+            return result;
+
+        };
+    </script>
+</body>
+
+</html>

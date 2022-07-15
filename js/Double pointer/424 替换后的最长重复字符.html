@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var characterReplacement = function(s, k) {
+            let ac = "A".charCodeAt();
+            let maxn = 0,
+                right = 0,
+                left = 0;
+            let num = new Array(26).fill(0);
+            while (right < s.length) {
+                num[s[right].charCodeAt() - ac]++;
+                maxn = Math.max(maxn, num[s[right].charCodeAt() - ac]);
+                if (right - left + 1 - maxn > k) {
+                    num[s[left].charCodeAt() - ac]--;
+                    left++;
+                }
+                right++;
+            }
+            return right - left;
+        };
+    </script>
+</body>
+
+</html>

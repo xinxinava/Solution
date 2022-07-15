@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lengthOfLIS = function(nums) {
+            let len = nums.length;
+            if (len == 0) return 0;
+            let dp = new Array(len).fill(1);
+            let maxlen = 1;
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < i; j++) {
+                    if (nums[i] > nums[j])
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+                maxlen = maxlen > dp[i] ? maxlen : dp[i];
+            }
+            //  console.log(dp);
+            return Math.max(maxlen);
+        };
+        let nums = [7, 7, 7, 7, 7, 7, 7]
+        console.log(lengthOfLIS(nums));
+    </script>
+</body>
+
+</html>

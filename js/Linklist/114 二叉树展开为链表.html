@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var flatten = function(root) {
+            let ans = [];
+            preOrder(root, ans);
+            let len = ans.length;
+            for (let i = 1; i < len; i++) {
+                ans[i - 1].left = null;
+                ans[i - 1].right = ans[i];
+            }
+        };
+
+        function preOrder(root, ans) {
+            if (root === null)
+                return;
+            ans.push(root);
+            preOrder(root.left, ans);
+            preOrder(root.right, ans);
+        }
+    </script>
+</body>
+
+</html>

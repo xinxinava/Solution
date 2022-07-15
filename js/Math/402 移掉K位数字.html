@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var removeKdigits = function(num, k) {
+            if (num.length <= k)
+                return "0";
+            let stk = [];
+            for (let i = 0; i < num.length; i++) {
+                while (k && stk.length && stk[stk.length - 1] > num[i]) {
+                    stk.pop();
+                    k--;
+                }
+                stk.push(num[i]);
+            }
+            let idx = 0;
+            while (idx < stk.length && stk[idx] === '0')
+                idx++;
+            stk = stk.slice(idx);
+            if (k) {
+                stk = stk.slice(0, stk.length - k);
+            }
+            if (stk.length === 0)
+                return "0";
+            return stk.join('');
+        };
+    </script>
+</body>
+
+</html>

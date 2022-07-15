@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortedArrayToBST = function(nums) {
+            if (nums.length === 0)
+                return null;
+            return create(nums, 0, nums.length - 1);
+        };
+
+        function create(nums, start, end) {
+            if (start > end)
+                return null;
+            let idx = start + parseInt((end - start + 1) / 2);
+            let root = new TreeNode(nums[idx]);
+            if (start === end)
+                return root;
+            root.left = create(nums, start, idx - 1);
+            root.right = create(nums, idx + 1, end);
+            return root;
+        }
+    </script>
+</body>
+
+</html>

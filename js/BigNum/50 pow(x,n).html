@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myPow = function(x, n) {
+            return n >= 0 ? quickMul(x, n) : 1 / quickMul(x, -n);
+        };
+
+        function quickMul(x, n) {
+            let ans = 1;
+            while (n > 0) {
+                if (n % 2 == 1)
+                    ans *= x;
+                x *= x;
+                n = Math.floor(n / 2);
+            }
+            return ans;
+        }
+    </script>
+</body>
+
+</html>

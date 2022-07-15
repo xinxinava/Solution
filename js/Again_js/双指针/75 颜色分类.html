@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortColors = function(nums) {
+            let n = nums.length;
+            let fast = 0,
+                slow = 0;
+            while (fast < n) {
+                if (nums[fast] === 0) {
+                    let temp = nums[fast];
+                    nums[fast] = nums[slow];
+                    nums[slow] = temp;
+                    slow++;
+                }
+                fast++;
+            }
+            fast = n - 1;
+            slow = n - 1;
+            while (fast >= 0) {
+                if (nums[fast] === 2) {
+                    let temp = nums[fast];
+                    nums[fast] = nums[slow];
+                    nums[slow] = temp;
+                    slow--;
+                }
+                fast--;
+            }
+        };
+    </script>
+</body>
+
+</html>

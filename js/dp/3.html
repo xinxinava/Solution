@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var lengthOfLongestSubstring = function (s) {
+        //     if (s == "")
+        //         return 0;
+        //     let lenmax = 0, temp = 0;
+        //     let len = s.length;
+        //     let map = new Map();
+        //     for (let i = 0; i < len; i++) {
+        //         map.set(s[i], i);
+        //         for (let j = i + 1; j < len; j++) {
+        //             if (map.has(s[j])) {
+        //                 map.clear();
+        //                 temp = 0;
+        //                 break;
+        //             } else {
+        //                 map.set(s[j], j);
+        //                 temp++;
+        //             }
+        //             lenmax = (lenmax < temp) ? temp : lenmax;
+        //         }
+        //     }
+        //     return lenmax + 1;
+        // };
+
+        var lengthOfLongestSubstring = function (s) {
+            let len = s.length;
+            if (len == 0)
+                return 0;
+            let lenmax = 1;
+            for (let i = 0; i < len; i++) {
+                let set = new Set();
+                let r = i;
+                while (r < len && !set.has(s[r]))
+                    set.add(s[r++]);
+                lenmax = Math.max(lenmax, set.size);
+            }
+            return lenmax;
+        };
+
+        let s = "bbbbb";
+        console.log(lengthOfLongestSubstring(s));
+    </script>
+</body>
+
+</html>

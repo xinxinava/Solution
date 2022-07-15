@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var addTwoNumbers = function(l1, l2) {
+            let p1 = l1,
+                p2 = l2;
+            let ans1 = [],
+                ans2 = [],
+                ans = [];
+            while (p1 != null) {
+                ans1.push(p1.val);
+                p1 = p1.next;
+            }
+            while (p2 != null) {
+                ans2.push(p2.val);
+                p2 = p2.next;
+            }
+            p1 = ans1.length - 1;
+            p2 = ans2.length - 1;
+            let jin = 0;
+            while (p1 >= 0 || p2 >= 0) {
+                if (p1 >= 0 && p2 >= 0) {
+                    ans.push((ans1[p1] + ans2[p2] + jin) % 10);
+                    jin = parseInt((ans1[p1] + ans2[p2] + jin) / 10);
+                } else if (p1 >= 0) {
+                    ans.push((ans1[p1] + jin) % 10);
+                    jin = parseInt((ans1[p1] + jin) / 10);
+                } else if (p2 >= 0) {
+                    ans.push((ans2[p2] + jin) % 10);
+                    jin = parseInt((ans2[p2] + jin) / 10);
+                }
+                p1--;
+                p2--;
+            }
+            if (jin !== 0)
+                ans.push(jin);
+            let hh = new ListNode();
+            for (let i = 0; i < ans.length; i++) {
+                let temp = new ListNode(ans[i]);
+                temp.next = hh.next;
+                hh.next = temp;
+            }
+            return hh.next;
+        };
+    </script>
+</body>
+
+</html>

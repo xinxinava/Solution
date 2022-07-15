@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var spiralOrder = function(matrix) {
+            let top = 0,
+                bottom = matrix.length - 1,
+                left = 0,
+                right = matrix[0].length - 1;
+            let result = [];
+            while (top < bottom && left < right) {
+                for (let j = left; j < right; j++)
+                    result.push(matrix[top][j]);
+                for (let i = top; i < bottom; i++)
+                    result.push(matrix[i][right]);
+                for (let j = right; j > left; j--)
+                    result.push(matrix[bottom][j]);
+                for (let i = bottom; i > top; i--)
+                    result.push(matrix[i][left]);
+                top++;
+                bottom--;
+                left++;
+                right--;
+            }
+            if (top == bottom) {
+                for (let j = left; j <= right; j++)
+                    result.push(matrix[top][j]);
+            } else if (left == right) {
+                for (let i = top; i <= bottom; i++) {
+                    result.push(matrix[i][left]);
+                }
+            }
+            return result;
+        };
+    </script>
+</body>
+
+</html>

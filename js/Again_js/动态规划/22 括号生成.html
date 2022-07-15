@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //递归的产生字符串，判断是否是有效字符串，
+        var generateParenthesis = function(n) {
+            let res = [];
+            let cur = [];
+            generateAll(cur, 2 * n, res);
+            return res;
+        };
+
+        function generateAll(cur, n, res) {
+            if (cur.length === n) {
+                if (isVaild(cur)) {
+                    res.push(cur.join(''));
+                }
+                return;
+            }
+            cur.push('(');
+            generateAll(cur, n, res);
+            cur.pop();
+            cur.push(')');
+            generateAll(cur, n, res);
+            cur.pop();
+        }
+
+        function isVaild(cur) {
+            let balance = 0;
+            let len = cur.length;
+            for (let ch of cur) {
+                if (ch === '(')
+                    balance++;
+                else if (ch === ')')
+                    balance--;
+                if (balance < 0)
+                    return false;
+            }
+            return balance === 0;
+        }
+
+        //方法二
+        var generateParenthesis = function(n) {
+            let res = [];
+            let cur = [];
+            generateAll(res, cur, n, 0, 0);
+            return res;
+        }
+
+        function generateAll(res, cur, n, left, right) {
+            if (cur.length === 2 * n) {
+                res.push(cur.join(''));
+                return;
+            }
+            if (left < n) {
+                cur.push('(');
+                generateAll(res, cur, n, left + 1, right);
+                cur.pop();
+            }
+            if (right < left) {
+                cur.push(')');
+                generateAll(res, cur, n, left, right + 1);
+                cur.pop();
+            }
+        }
+    </script>
+</body>
+
+</html>

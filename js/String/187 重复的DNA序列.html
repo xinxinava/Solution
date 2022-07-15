@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findRepeatedDnaSequences = function(s) {
+            let len = s.length;
+            let ans = [];
+            let cnt = new Map();
+            for (let i = 0; i <= len - 10; i++) {
+                let sub = s.substr(i, 10);
+                cnt.set(sub, (cnt.get(sub) || 0) + 1);
+                if (cnt.get(sub) === 2)
+                    ans.push(sub);
+            }
+            return ans;
+        };
+    </script>
+</body>
+
+</html>

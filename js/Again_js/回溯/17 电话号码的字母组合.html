@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let res, path;
+        let digToLet = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
+        var letterCombinations = function(digits) {
+            if (digits.length === 0)
+                return [];
+            res = [];
+            path = [];
+            backtracking(digits, 0);
+            return res;
+        };
+
+        function backtracking(digits, idx) {
+            if (path.length === digits.length) {
+                res.push(path.join(''));
+                return;
+            }
+            let letter = digToLet[parseInt(digits[idx])];
+            for (let i = 0; i < letter.length; i++) {
+                path.push(letter[i]);
+                backtracking(digits, idx + 1);
+                path.pop();
+            }
+        }
+    </script>
+</body>
+
+</html>

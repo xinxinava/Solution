@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isSameTree = function(p, q) {
+            if (p == null && q == null) return true;
+            if (p != null && q == null) return false;
+            if (p == null && q != null) return false;
+            if (p.val != q.val) return false;
+
+            let leftT = isSameTree(p.left, q.left);
+            let rightT = isSameTree(p.right, q.right);
+            return leftT && rightT;
+        };
+    </script>
+</body>
+
+</html>

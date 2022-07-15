@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isPerfectSquare = function(num) {
+            let left = 0,
+                right = num,
+                mid = parseInt((left + right) / 2);
+            while (left <= right) {
+                if (mid * mid < num)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+                mid = parseInt((left + right) / 2);
+                if (mid * mid == num)
+                    return true;
+            }
+            return false;
+        };
+    </script>
+</body>
+
+</html>

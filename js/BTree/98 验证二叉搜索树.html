@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isValidBST = function(root) {
+            if (root == null) return true;
+            let inorder = new Array();
+            traversal(root, inorder);
+            for (let i = 1; i < inorder.length; i++) {
+                if (inorder[i] < inorder[i - 1])
+                    return false;
+            }
+            return true;
+        };
+        let traversal = function(root, inorder) {
+            if (root == null) return;
+            traversal(root.left, inorder);
+            inorder.push(root.val);
+            traversal(root.right, inorder);
+        }
+    </script>
+</body>
+
+</html>

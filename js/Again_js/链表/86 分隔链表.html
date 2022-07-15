@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var partition = function(head, x) {
+            let hair = new ListNode();
+            hair.next = head;
+            let pre = hair;
+            let cur = head;
+            let little = hair;
+            while (cur) {
+                if (cur.val < x) {
+                    if (pre !== little) {
+                        pre.next = cur.next;
+                        cur.next = little.next;
+                        little.next = cur;
+                        little = little.next;
+                        cur = pre.next;
+                    } else {
+                        pre = pre.next;
+                        cur = cur.next;
+                        little = little.next;
+                    }
+                } else {
+                    pre = pre.next;
+                    cur = cur.next;
+                }
+            }
+            return hair.next;
+        };
+    </script>
+
+</body>
+
+</html>

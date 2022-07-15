@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var binaryTreePaths = function(root) {
+            let path = new Array();
+            let result = new Array();
+            getpath(root, path, result);
+            return result;
+
+        };
+        let getpath = function(root, path, result) {
+            if (root == null) return;
+            path.push(root.val);
+            if (root.left == null && root.right == null) {
+                let spath = "";
+                for (let i = 0; i < path.length - 1; i++) {
+                    spath += path[i];
+                    spath += "->";
+                }
+                spath += path[path.length - 1];
+                result.push(spath);
+                return;
+            }
+            if (root.left) {
+                getpath(root.left, path, result);
+                path.pop();
+            }
+            if (root.right) {
+                getpath(root.right, path, result);
+                path.pop();
+            }
+        }
+    </script>
+</body>
+
+</html>

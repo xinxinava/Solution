@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var numberOfSubarrays = function(nums, k) {
+            let n = nums.length;
+            let odd = 0;
+            let ans = 0;
+            let cnt = new Array(n + 1).fill(0);
+            cnt[0] = 1;
+            for (let i = 0; i < n; i++) {
+                if (nums[i] % 2)
+                    odd++;
+                if (odd >= k)
+                    ans += cnt[odd - k];
+                cnt[odd] += 1;
+            }
+            return ans;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var diffWaysToCompute = function(expression) {
+            let result = [];
+            for (let i = 0; i < expression.length; i++) {
+                let c = expression.charAt(i);
+                if (c === '+' || c === '-' || c === '*') {
+                    let left = diffWaysToCompute(expression.substring(0, i));
+                    let right = diffWaysToCompute(expression.substring(i + 1));
+                    for (let j = 0; j < left.length; j++) {
+                        for (let n = 0; n < right.length; n++) {
+                            switch (c) {
+                                case '+':
+                                    result.push(left[j] + right[n]);
+                                    break;
+                                case '-':
+                                    result.push(left[j] - right[n]);
+                                    break;
+                                case '*':
+                                    result.push(left[j] * right[n]);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            if (result.length === 0)
+                result.push(parseInt(expression));
+            return result;
+
+        };
+    </script>
+</body>
+
+</html>

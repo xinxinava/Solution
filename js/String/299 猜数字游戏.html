@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var getHint = function(secret, guess) {
+            let lens = secret.length;
+            let leng = guess.length;
+            let bulls = 0;
+            let cows = 0;
+            secret = [...secret];
+            guess = [...guess];
+            for (let i = 0; i < lens; i++) {
+                if (i < leng && secret[i] === guess[i])
+                    bulls++;
+            }
+            secret.sort();
+            guess.sort();
+            let i = 0,
+                j = 0;
+            while (i < lens && j < leng) {
+                if (secret[i] < guess[j])
+                    i++;
+                else if (secret[i] > guess[j])
+                    j++;
+                else {
+                    cows++;
+                    i++;
+                    j++;
+                }
+            }
+            return bulls + "A" + (cows - bulls) + "B";
+        };
+    </script>
+</body>
+
+</html>

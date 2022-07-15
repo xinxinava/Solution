@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var connect = function(root) {
+            if (root == null) return null;
+
+            let queue = new Array();
+            queue.push(root);
+            while (queue.length) {
+                let size = queue.length;
+                let cur;
+                for (let i = 0; i < size; i++) {
+                    cur = queue.shift();
+                    cur.next = queue[0];
+                    if (cur.left) queue.push(cur.left);
+                    if (cur.right) queue.push(cur.right);
+                }
+                cur.next = null;
+            }
+            return root;
+        };
+    </script>
+</body>
+
+</html>

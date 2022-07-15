@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxProfit = function(k, prices) {
+            if (k === 0)
+                return 0;
+            let dp = new Array(2 * k + 1).fill(0);
+            for (let i = 0; i < k; i++)
+                dp[i * 2 + 1] = -prices[0];
+            for (let i = 0; i < prices.length; i++) {
+                for (let j = 0; j < k; j++) {
+                    dp[j * 2 + 1] = Math.max(dp[j * 2 + 1], dp[j * 2] - prices[i]);
+                    dp[j * 2 + 2] = Math.max(dp[j * 2 + 2], dp[j * 2 + 1] + prices[i]);
+                }
+            }
+            return dp[2 * k];
+        };
+    </script>
+</body>
+
+</html>

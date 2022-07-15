@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findSubstringInWraproundString = function(p) {
+            let dp = new Array(26).fill(0);
+            let k = 0;
+            for (let i = 0; i < p.length; i++) {
+                if (i > 0 && isContinue(p[i - 1], p[i]))
+                    k++;
+                else
+                    k = 1;
+                let index = p[i].charCodeAt() - 'a'.charCodeAt();
+                dp[index] = Math.max(dp[index], k);
+            }
+            let sum = 0;
+            for (let i = 0; i < 26; i++)
+                sum += dp[i];
+            return sum;
+        };
+
+        function isContinue(a, b) {
+            if (a === 'z')
+                return b === 'a';
+            return a.charCodeAt() + 1 === b.charCodeAt();
+        }
+    </script>
+</body>
+
+</html>

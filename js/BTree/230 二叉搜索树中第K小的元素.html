@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var kthSmallest = function(root, k) {
+            let ans = [];
+            inorder(root, ans);
+            return ans[k - 1];
+        };
+
+        function inorder(root, ans) {
+            if (root === null)
+                return;
+            inorder(root.left, ans);
+            ans.push(root.val);
+            inorder(root.right, ans);
+        }
+    </script>
+</body>
+
+</html>

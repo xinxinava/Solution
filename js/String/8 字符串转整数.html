@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myAtoi = function(s) {
+            let len = s.length;
+            if (len == 0)
+                return 0;
+            let ans = [];
+            let i = 0;
+            while (i < len && s[i] === ' ') i++;
+            if (i < len) {
+                if (s[i] === '-' || (s[i].charCodeAt() >= '0'.charCodeAt() && s[i].charCodeAt() <= '9'.charCodeAt())) {
+                    ans.push(s[i]);
+                    i++;
+                } else if (s[i] === '+')
+                    i++;
+            } else return 0;
+            while (i < len) {
+                if (s[i].charCodeAt() >= '0'.charCodeAt() && s[i].charCodeAt() <= '9'.charCodeAt()) {
+                    ans.push(s[i]);
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            if (ans.length === 0 || (ans.length === 1 && ans[0] === '-'))
+                return 0;
+            let result = Number(ans.join(''));
+            if (result < -2147483648)
+                result = -2147483648;
+            else if (result > 2147483647)
+                result = 2147483647;
+
+            return result;
+        };
+    </script>
+</body>
+
+</html>

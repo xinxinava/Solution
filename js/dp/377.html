@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var combinationSum4 = function(nums, target) {
+            let sum = 0;
+            for (let i = 0; i < nums.length; i++)
+                sum += nums[i];
+            let dp = new Array(target + 1).fill(0);
+            dp[0] = 1;
+            for (let i = 0; i <= target; i++)
+                for (let j = 0; j < nums.length; j++)
+                    if (i >= nums[j])
+                        dp[i] += dp[i - nums[j]];
+            console.log(dp);
+            return dp[target];
+        };
+        let nums = [1, 2];
+        console.log(combinationSum4(nums, 10));
+    </script>
+</body>
+
+</html>

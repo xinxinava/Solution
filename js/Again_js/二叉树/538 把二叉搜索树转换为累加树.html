@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var convertBST = function(root) {
+            let pre = 0;
+
+            function traversal(root) {
+                if (root === null)
+                    return null;
+                traversal(root.right);
+                root.val += pre;
+                pre = root.val;
+                traversal(root.left);
+            }
+            traversal(root);
+            return root;
+        };
+    </script>
+</body>
+
+</html>

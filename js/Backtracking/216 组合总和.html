@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let result = [],
+            path = [];
+        var combinationSum3 = function(k, n) {
+            result = [];
+            path = [];
+            backtracking(n, k, 1);
+            return result;
+        };
+        let backtracking = function(n, k, start) {
+            if (path.length == k) {
+                let sum = 0;
+                for (let i = 0; i < path.length; i++)
+                    sum += path[i];
+                if (sum == n)
+                    result.push([...path]);
+                return;
+            }
+            for (let i = start; i <= 9; i++) {
+                path.push(i);
+                backtracking(n, k, i + 1);
+                path.pop();
+            }
+        }
+        console.log(combinationSum3(3, 9));
+    </script>
+</body>
+
+</html>

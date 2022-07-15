@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var hasPathSum = function(root, targetSum) {
+            if (root == null) return false;
+            return traversal(root, targetSum - root.val);
+        };
+        let traversal = function(root, target) {
+            if (root.left == null && root.right == null && target == 0) return true;
+            if (root.left == null && root.right == null) return false;
+            if (root.left) {
+                if (traversal(root.left, target - root.left.val)) return true;
+            }
+            if (root.right) {
+                if (traversal(root.right, target - root.right.val)) return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

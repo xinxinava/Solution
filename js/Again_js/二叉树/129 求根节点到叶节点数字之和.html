@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //非递归
+        var sumNumbers = function(root) {
+            if (root == null)
+                return 0;
+            let queue = [];
+            queue.push([root, root.val]);
+            let sum = 0;
+            while (queue.length) {
+                let len = queue.length;
+                for (let i = 0; i < len; i++) {
+                    let temp = queue.shift();
+                    let first = temp[0];
+                    let second = temp[1];
+                    if (first.left)
+                        queue.push([first.left, second * 10 + first.left.val]);
+                    if (first.right)
+                        queue.push([first.right, second * 10 + first.right.val]);
+                    if (!first.left && !first.right)
+                        sum += second;
+                }
+            }
+            return sum;
+        };
+        //深度递归
+        function sumNumbers(root) {
+            return dfs(root, 0);
+        }
+
+        function dfs(root, preval) {
+            if (root === null)
+                return 0;
+            let sum = preval * 10 + root.val;
+            if (!root.left && !root.right)
+                return sum;
+            return dfs(root.left, sum) + dfs(root.right, sum);
+        }
+    </script>
+</body>
+
+</html>

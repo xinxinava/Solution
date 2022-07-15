@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var printTree = function(root) {
+            let h = getH(root);
+            let res = new Array(h).fill("").map(() => new Array((1 << h) - 1).fill(""));
+            fill(res, root, 0, 0, res[0].length);
+            return res;
+        };
+
+        function fill(res, root, depth, l, r) {
+            if (root === null)
+                return;
+            res[depth][parseInt((l + r) / 2)] = root.val.toString();
+            fill(res, root.left, depth + 1, l, parseInt((l + r) / 2));
+            fill(res, root.right, depth + 1, parseInt((l + r + 1) / 2), r);
+        }
+
+        function getH(root) {
+            if (root === null)
+                return 0;
+            return Math.max(getH(root.left), getH(root.right)) + 1;
+        }
+    </script>
+</body>
+
+</html>

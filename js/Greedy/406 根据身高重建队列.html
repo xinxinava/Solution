@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reconstructQueue = function(people) {
+            people.sort(cmp);
+            let queue = [];
+            for (let i = 0; i < people.length; i++) {
+                let pos = people[i][1];
+                queue.splice(pos, 0, people[i]);
+            }
+            return queue;
+        };
+        let cmp = function(a, b) {
+            if (a[0] == b[0])
+                return a[1] - b[1];
+            return b[0] - a[0];
+        };
+        let people = [
+            [7, 0],
+            [4, 4],
+            [7, 1],
+            [5, 0],
+            [6, 1],
+            [5, 2]
+        ];
+        console.log(reconstructQueue(people));
+    </script>
+</body>
+
+</html>

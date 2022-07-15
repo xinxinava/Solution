@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var subarraysWithKDistinct = function(nums, k) {
+            return countK(nums, k) - countK(nums, k - 1);
+        };
+
+        function countK(nums, k) {
+            let maxn = Math.max(...nums);
+            let dp = new Array(maxn + 1).fill(0);
+            let left = 0;
+            let res = 0;
+            for (let right = 0; right < nums.length; right++) {
+                if (dp[nums[right]] === 0)
+                    k--;
+                dp[nums[right]]++;
+                while (k < 0) {
+                    dp[nums[left]]--;
+                    if (dp[nums[left]] === 0)
+                        k++;
+                    left++;
+                }
+                res += (right - left + 1);
+            }
+            return res;
+        }
+    </script>
+
+</body>
+
+</html>

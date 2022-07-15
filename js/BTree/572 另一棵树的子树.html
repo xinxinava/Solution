@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isSubtree = function(root, subRoot) {
+            if (subRoot == null) return true;
+            if (root == null) return false;
+            let queue = new Array();
+            queue.push(root);
+            while (queue.length) {
+                let size = queue.length;
+                for (let i = 0; i < size; i++) {
+                    let cur = queue.shift();
+                    if ((cur.val == subRoot.val) && (compare(cur, subRoot)))
+                        return true;
+                    if (cur.left) queue.push(cur.left);
+                    if (cur.right) queue.push(cur.right);
+                }
+            }
+            return false;
+        };
+        let compare = function(root, subroot) {
+            if (root == null && subroot == null) return true;
+            if (root != null && subroot == null) return false;
+            if (root == null && subroot != null) return false;
+            if (root.val != subroot.val) return false;
+            let leftT = compare(root.left, subroot.left);
+            let rightT = compare(root.right, subroot.right);
+            return leftT && rightT;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //方法一：用线性表存储
+        var reorderList = function(head) {
+            let ans = [];
+            let hh = head;
+            while (hh) {
+                ans.push(hh);
+                hh = hh.next;
+            }
+            let i = 0,
+                j = ans.length - 1;
+            while (i < j) {
+                ans[i].next = ans[j];
+                i++;
+                if (i == j)
+                    break;
+                ans[j].next = ans[i];
+                j--;
+            }
+            ans[i].next = null;
+        };
+        //方法二：寻找中间节点，后半部分逆序，合并两部分链表
+    </script>
+</body>
+
+</html>

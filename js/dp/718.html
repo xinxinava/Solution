@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findLength = function(nums1, nums2) {
+            let len1 = nums1.length;
+            let len2 = nums2.length;
+            if (len1 == 0 || len2 == 0) return 0;
+            let maxlen = 0;
+            for (let i = 0; i < len1; i++)
+                for (let j = 0; j < len2; j++) {
+                    if (nums1[i] == nums2[j]) {
+                        let maxsub = MaxSub(nums1, i, len1, nums2, j, len2);
+                        maxlen = maxlen > maxsub ? maxlen : maxsub;
+                    }
+                }
+            return maxlen;
+        };
+        let MaxSub = function(nums1, start1, end1, nums2, start2, end2) {
+            let result = 0;
+            for (let i = start1, j = start2; i < end1 && j < end2; i++, j++) {
+                if (nums1[i] != nums2[j])
+                    break;
+                result++;
+            }
+            return result;
+        }
+
+        let nums1 = [1, 2, 3, 2, 1];
+        let nums2 = [3, 2, 1, 4, 7];
+        console.log(findLength(nums1, nums2));
+    </script>
+</body>
+
+</html>

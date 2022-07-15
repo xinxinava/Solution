@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var addStrings = function(num1, num2) {
+            let jin = 0;
+            let n = num1.length - 1,
+                m = num2.length - 1;
+            let temp1 = 0,
+                temp2 = 0;
+            let res = [];
+            while (n >= 0 || m >= 0) {
+                temp1 = (n >= 0 ? num1[n].charCodeAt() - '0'.charCodeAt() : 0);
+                temp2 = (m >= 0 ? num2[m].charCodeAt() - '0'.charCodeAt() : 0);
+                res.push((temp1 + temp2 + jin) % 10);
+                jin = parseInt((temp1 + temp2 + jin) / 10);
+                n--;
+                m--
+            }
+            if (jin > 0)
+                res.push(jin);
+            return res.reverse().join('');
+        };
+    </script>
+</body>
+
+</html>

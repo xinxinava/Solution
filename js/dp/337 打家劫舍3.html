@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //[0]表示不偷，[1]表示偷
+        var rob = function(root) {
+            let result = robTree(root);
+            return Math.max(result[0], result[1]);
+        };
+
+        function robTree(root) {
+            if (root === null)
+                return [0, 0];
+            let L = robTree(root.left);
+            let R = robTree(root.right);
+            let selected = root.val + L[1] + R[1];
+            let notselected = Math.max(L[0], L[1]) + Math.max(R[0], R[1]);
+            return [selected, notselected];
+        }
+    </script>
+</body>
+
+</html>

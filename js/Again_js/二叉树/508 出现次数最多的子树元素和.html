@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findFrequentTreeSum = function(root) {
+            if (root === null)
+                return [];
+            let ans = [];
+
+            function sumTree(root) {
+                if (root === null)
+                    return 0;
+                return root.val + sumTree(root.left) + sumTree(root.right);
+            }
+
+            function preorder(root) {
+                if (root === null) return ans;
+                ans.push(sumTree(root));
+                preorder(root.left);
+                preorder(root.right);
+            }
+            preorder(root);
+            ans.sort((a, b) => a - b);
+            let maxCount = 0;
+            let res = [];
+            let mmp = new Map();
+            for (let i = 0; i < ans.length; i++) {
+                mmp.set(ans[i], (mmp.get(ans[i]) | 0) + 1);
+                maxCount = Math.max(mmp.get(ans[i]), maxCount);
+            }
+            for (let [key, value] of mmp.entries()) {
+                if (value === maxCount)
+                    res.push(key);
+            }
+            return res;
+        };
+    </script>
+</body>
+
+</html>

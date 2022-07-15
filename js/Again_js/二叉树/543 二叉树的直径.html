@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var diameterOfBinaryTree = function(root) {
+            ans = 0;
+
+            function depth(root) {
+                if (root === null) return 0;
+                let l = depth(root.left);
+                let r = depth(root.r);
+                ans = Math.max(ans, l + r);
+                return Math.max(l, r) + 1;
+            }
+            depth(root);
+            return ans;
+        };
+    </script>
+</body>
+
+</html>

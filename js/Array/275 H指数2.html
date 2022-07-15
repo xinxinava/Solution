@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var hIndex = function(citations) {
+            let len = citations.length;
+            let l = 0,
+                r = len - 1;
+            let h = 0;
+            while (l <= r) {
+                let mid = l + Math.floor((r - l) / 2);
+                if (citations[mid] > len - mid)
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+
+            }
+            return len - l;
+        };
+    </script>
+</body>
+
+</html>

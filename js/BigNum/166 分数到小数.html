@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var fractionToDecimal = function(numerator, denominator) {
+            if (numerator % denominator === 0)
+                return "" + Math.floor(numerator / denominator);
+
+            let sb = [];
+            if ((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0))
+                sb.push("-");
+
+            numerator = Math.abs(numerator);
+            denominator = Math.abs(denominator);
+            let interge = Math.floor(numerator / denominator);
+            sb.push(interge);
+            sb.push(".");
+            let reminder = numerator % denominator;
+            let reminderIdx = new Map();
+            let index = 0;
+            let frag = [];
+            while (reminder != 0 && !reminderIdx.has(reminder)) {
+                reminderIdx.set(reminder, index);
+                index++;
+                reminder = reminder * 10;
+                frag.push(Math.floor(reminder / denominator));
+                reminder = reminder % denominator;
+            }
+            if (reminder !== 0) {
+                frag.splice(reminderIdx.get(reminder), 0, '(');
+                frag.push(')');
+            }
+            sb.push(frag.join(''));
+            return sb.join('');
+        };
+    </script>
+</body>
+
+</html>

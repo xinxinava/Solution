@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var compress = function(chars) {
+            let n = chars.length;
+            if (n <= 1)
+                return n;
+            let [slow, fast, count] = [0, 1, 1];
+            let res = [];
+            let index = 0;
+            while (fast < n) {
+                if (chars[fast] === chars[slow]) {
+                    count++;
+                    fast++;
+                } else {
+                    if (count === 1) {
+                        chars[index++] = chars[slow];
+                        slow = fast;
+                        fast++;
+                        count = 1;
+                        continue;
+                    } else {
+                        let temp = count.toString();
+                        let ans = Array.from(temp);
+                        chars[index++] = chars[slow];
+                        for (let i = 0; i < ans.length; i++)
+                            chars[index++] = ans[i];
+                        slow = fast;
+                        fast++;
+                        count = 1;
+                    }
+                }
+            }
+            if (count === 1) {
+                chars[index++] = chars[slow];
+            } else {
+                let temp = count.toString();
+                let ans = Array.from(temp);
+                chars[index++] = chars[slow];
+                for (let i = 0; i < ans.length; i++)
+                    chars[index++] = ans[i];
+            }
+            chars.splice(index);
+            console.log(chars);
+            return chars.length;
+        };
+    </script>
+</body>
+
+</html>

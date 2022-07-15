@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var licenseKeyFormatting = function(s, k) {
+            let n = s.length;
+            let ans = [];
+            let count = 0;
+            let i = s.length - 1;
+            while (i >= 0) {
+                if (count == k) {
+                    ans.push('-');
+                    count = 0;
+                }
+                if (s[i] !== '-') {
+                    ans.push(s[i].toUpperCase());
+                    count++;
+                }
+                i--;
+            }
+            if (ans[ans.length - 1] === '-')
+                ans.pop();
+            return ans.reverse().join('');
+        };
+    </script>
+</body>
+
+</html>

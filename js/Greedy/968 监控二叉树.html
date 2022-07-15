@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let result;
+        var minCameraCover = function(root) {
+            result = 0;
+            if (travelsal(root) == 0)
+                result++;
+            return result;
+        };
+        let traversal = function(root) {
+            if (root == null)
+                return 2;
+            let left = traversal(root.left);
+            let right = traversal(root.right);
+            if (left == 2 && right == 2)
+                return 0;
+            if (left == 0 || right == 0) {
+                result++;
+                return 1;
+            }
+            if (left == 1 || right == 1)
+                return 2;
+            return -1;
+        }
+    </script>
+</body>
+
+</html>

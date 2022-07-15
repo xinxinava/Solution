@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var frequencySort = function(s) {
+            let mmp = new Map();
+            let maxfreq = 0;
+            for (let i = 0; i < s.length; i++) {
+                let freq = (mmp.get(s[i]) | 0) + 1;
+                mmp.set(s[i], freq);
+                maxfreq = Math.max(maxfreq, freq);
+            }
+            let buckets = new Array(maxfreq + 1).fill(0).map(() => new Array());
+            for (let [key, value] of mmp.entries()) {
+                buckets[value].push(key);
+            }
+            let res = [];
+            for (let i = maxfreq; i > 0; i--) {
+                let bucket = bucket[i];
+                for (let ch of bucket) {
+                    for (let k = 0; k < i; k++)
+                        res.push(ch);
+                }
+            }
+            return res.join('');
+        };
+    </script>
+</body>
+
+</html>

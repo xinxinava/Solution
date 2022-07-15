@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var generateParenthesis = function(n) {
+            let result = [];
+            let curs = [];
+            generateAll(curs, n * 2, result);
+            return result;
+        };
+
+        function generateAll(curs, len, result) {
+            if (len === curs.length) {
+                let ss = curs.join('');
+                if (valid(ss)) {
+                    result.push(ss);
+                }
+                return;
+            }
+            curs.push('(');
+            generateAll(curs, len, result);
+            curs.pop();
+            curs.push(')');
+            generateAll(curs, len, result);
+            curs.pop();
+        }
+
+        function valid(ss) {
+            let balance = 0;
+            for (let i = 0; i < ss.length; i++) {
+                if (ss[i] === '(')
+                    balance++;
+                else
+                    balance--;
+                if (balance < 0)
+                    return false;
+            }
+            return balance === 0;
+        }
+    </script>
+</body>
+
+</html>

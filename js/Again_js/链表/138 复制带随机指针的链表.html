@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var copyRandomList = function(head) {
+            if (head == null)
+                return null;
+            let mmp = new Map();
+            let cur = head;
+            while (cur) {
+                mmp.set(cur, new Node(cur.val, null, null));
+                cur = cur.next;
+            }
+            cur = head;
+            while (cur) {
+                mmp.get(cur).next = mmp.get(cur.next) || null;
+                mmp.get(cur).random = mmp.get(cur.random) || null;
+                cur = cur.next;
+            }
+            return mmp.get(head);
+        };
+    </script>
+</body>
+
+</html>

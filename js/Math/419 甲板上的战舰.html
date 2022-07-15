@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var countBattleships = function(board) {
+            let ans = 0;
+            let m = board.length;
+            let n = board[0].length;
+            for (let i = 0; i < m; i++)
+                for (let j = 0; j < n; j++)
+                    if (board[i][j] === 'X')
+                        if ((i == 0 || board[i - 1][j] === '.') && (j == 0 || board[i][j - 1] === '.'))
+                            ans++;
+            return ans;
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Definition for a binary tree node.
+         * function TreeNode(val) {
+         *     this.val = val;
+         *     this.left = this.right = null;
+         * }
+         */
+
+        /**
+         * Encodes a tree to a single string.
+         *
+         * @param {TreeNode} root
+         * @return {string}
+         */
+        var serialize = function(root) {
+            if (!root)
+                return "";
+            let ans = [];
+            dfs(root, ans);
+            return ans.join(' ');
+        };
+
+        function dfs(root, ans) {
+            if (root) {
+                ans.push(root.val);
+                dfs(root.left);
+                dfs(root.right);
+            }
+        }
+
+        /**
+         * Decodes your encoded data to tree.
+         *
+         * @param {string} data
+         * @return {TreeNode}
+         */
+        var deserialize = function(data) {
+            let pre = data.split(' ').filter(v => v);
+            let mid = [...pre].sort((a, b) => a - b);
+            return build(pre, mid);
+        };
+
+        function build(pre, mid) {
+            if (!pre.length || !mid.length)
+                return null;
+            let rootval = pre[0];
+            let root = new TreeNode(rootval);
+            let midindex = mid.indexOf(rootval);
+            if (midindex !== -1) {
+                pre.shift();
+                root.left = build(pre, mid.splice(0, midindex));
+                root.right = build(pre, mid.slice(midindex + 1));
+            }
+            return root;
+        }
+
+        /**
+         * Your functions will be called as such:
+         * deserialize(serialize(root));
+         */
+    </script>
+</body>
+
+</html>

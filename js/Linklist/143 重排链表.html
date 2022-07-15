@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reorderList = function(head) {
+            let ans = [];
+            let cur = head;
+            while (cur != null) {
+                ans.push(cur);
+                cur = cur.next;
+            }
+            cur = ans[0];
+
+            for (let i = 1; i <= Math.floor((ans.length - 1) / 2); i++) {
+                cur.next = ans[ans.length - i];
+                cur = cur.next;
+                cur.next = ans[i];
+                cur = cur.next;
+            }
+            if (ans.length % 2 === 0) {
+                cur.next = ans[ans.length / 2];
+                cur = cur.next;
+            }
+            cur.next = null;
+        };
+    </script>
+</body>
+
+</html>

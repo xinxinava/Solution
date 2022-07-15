@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isPalindrome = function (x) {
+            let nums = 0, temp = x;
+            if (x < 0)
+                return false;
+            while (temp != 0) {
+                nums = nums * 10 + temp % 10;
+                temp = parseInt(temp / 10);
+            }
+            if (x === nums)
+                return true;
+            else return false;
+        };
+        let x = -101;
+        console.log(isPalindrome(x));
+    </script>
+</body>
+
+</html>

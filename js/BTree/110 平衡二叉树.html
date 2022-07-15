@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isBalanced = function(root) {
+            return getDepth(root) == -1 ? false : true;
+        };
+        let getDepth = function(root) {
+            if (root == null) return 0;
+            let leftHight = getDepth(root.left);
+            if (leftHight == -1) return -1;
+            let rightHight = getDepth(root.right);
+            if (rightHight == -1) return -1;
+            if (Math.abs(leftHight - rightHight) > 1) return -1;
+            return 1 + Math.max(rightHight, leftHight);
+        }
+    </script>
+</body>
+
+</html>

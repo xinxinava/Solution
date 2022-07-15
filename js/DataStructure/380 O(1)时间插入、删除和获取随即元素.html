@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var RandomizedSet = function() {
+            this.numToLocation = new Map();
+            this.nums = [];
+        };
+
+        /** 
+         * @param {number} val
+         * @return {boolean}
+         */
+        RandomizedSet.prototype.insert = function(val) {
+            if (this.numToLocation.has(val))
+                return false;
+            this.numToLocation.set(val, this.nums.length);
+            this.nums.push(val);
+            return true;
+        };
+
+        /** 
+         * @param {number} val
+         * @return {boolean}
+         */
+        RandomizedSet.prototype.remove = function(val) {
+            if (!this.numToLocation.has(val))
+                return false;
+            let location = this.numToLocation.get(val);
+            this.numToLocation.set(this.nums[this.nums.length - 1], location);
+            this.numToLocation.delete(val);
+            this.nums[location] = this.nums[this.nums.length - 1];
+            this.nums.length--;
+            return true;
+        };
+
+        /**
+         * @return {number}
+         */
+        RandomizedSet.prototype.getRandom = function() {
+            let p = parseInt(Math.random() * this.nums.length);
+            return this.nums[p];
+        };
+
+        /**
+         * Your RandomizedSet object will be instantiated and called as such:
+         * var obj = new RandomizedSet()
+         * var param_1 = obj.insert(val)
+         * var param_2 = obj.remove(val)
+         * var param_3 = obj.getRandom()
+         */
+    </script>
+</body>
+
+</html>

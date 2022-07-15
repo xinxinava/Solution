@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var evalRPN = function(tokens) {
+            let ans = [];
+            for (let i = 0; i < tokens.length; i++) {
+                if (tokens[i] !== "+" && tokens[i] !== "-" && tokens[i] !== "*" && tokens[i] !== "/")
+                    ans.push(parseInt(tokens[i]));
+                else {
+                    let first = ans.pop();
+                    let second = ans.pop();
+                    let result;
+                    if (tokens[i] === "+")
+                        result = second + first;
+                    else if (tokens[i] === "-")
+                        result = second - first;
+                    else if (tokens[i] === "*")
+                        result = second * first;
+                    else if (tokens[i] === "/")
+                        result = parseInt(second / first);
+                    ans.push(result);
+                }
+
+            }
+            return ans[0];
+
+        };
+    </script>
+</body>
+
+</html>

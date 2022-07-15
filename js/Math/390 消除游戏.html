@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lastRemaining = function(n) {
+            let start = 1;
+            let step = 1;
+            let isLR = true;
+            while (n > 1) {
+                if (isLR || (n & 1) == 1)
+                    start += step;
+                n >>= 1;
+                step <<= 1;
+                isLR = !isLR;
+            }
+            return start;
+        };
+    </script>
+</body>
+
+</html>

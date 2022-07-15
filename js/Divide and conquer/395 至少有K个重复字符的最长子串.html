@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var longestSubstring = function(s, k) {
+            return dfs(s, 0, s.length - 1, k);
+        };
+
+        function dfs(s, left, right, k) {
+            if (left > right)
+                return 0;
+            let cnt = new Array(26).fill(0);
+
+            for (let i = left; i <= right; i++) {
+                cnt[s[i].charCodeAt() - 'a'.charCodeAt()]++;
+            }
+            for (let i = left; i <= right; i++) {
+                if (cnt[s[i].charCodeAt() - 'a'.charCodeAt()] < k)
+                    return Math.max(dfs(s, left, i - 1, k), dfs(s, i + 1, right, k));
+            }
+            return right - left + 1;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let result;
+        let path;
+        let hash = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
+        var letterCombinations = function(digits) {
+            if (digits.length == 0)
+                return [];
+            result = [];
+            path = [];
+            backtracking(digits, 0);
+            return result;
+        };
+        let backtracking = function(digits, index) {
+            if (index == digits.length) {
+                let s = "";
+                for (let i = 0; i < path.length; i++)
+                    s += path[i];
+                result.push(s);
+                return;
+            }
+            let str = hash[parseInt(digits[index]) - 2];
+            for (let i = 0; i < str.length; i++) {
+                path.push(str[i])
+                    //    console.log(path);
+                backtracking(digits, index + 1);
+                path.pop(str[i]);
+            }
+        }
+        console.log(letterCombinations("23"));
+        console.log(typeof("" + '1'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //递归
+        var kthSmallest = function(root, k) {
+            let ans = [];
+            inorder(root, ans);
+            return ans[k - 1];
+        };
+
+        function inorder(root, ans) {
+            if (!root)
+                return;
+            inorder(root.left, ans);
+            ans.push(root.val);
+            inorder(root.right, ans);
+        }
+
+        var kthSmallest = function(root, k) {
+            let stk = [];
+            while (stk.length || root) {
+                while (root) {
+                    stk.push(root);
+                    root = root.left;
+                }
+                root = stk.pop();
+                k--;
+                if (k == 0)
+                    return root.val;
+                root = root.right;
+            }
+        }
+    </script>
+</body>
+
+</html>

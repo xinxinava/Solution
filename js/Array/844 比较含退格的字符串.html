@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var backspaceCompare = function(s, t) {
+            s = handle(s);
+            t = handle(t);
+            if (s.length != t.length)
+                return false;
+            for (let i = 0; i < s.length; i++) {
+                if (s[i] != t[i])
+                    return false;
+            }
+            return true;
+        };
+
+        function handle(str) {
+            let slow = 0,
+                fast = 0;
+            let result = [];
+            while (fast < str.length) {
+                if (str[fast] == '#') {
+                    if (slow != 0) {
+                        result.pop();
+                        slow--;
+                    }
+                } else {
+                    result.push(str[fast]);
+                    slow++;
+                }
+                fast++;
+            }
+            return result.join('');
+        };
+        console.log(backspaceCompare("a###c", "a####c"));
+    </script>
+</body>
+
+</html>

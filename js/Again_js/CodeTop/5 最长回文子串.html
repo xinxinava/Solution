@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var longestPalindrome = function(s) {
+            let n = s.length;
+            if (n < 2)
+                return s;
+            let dp = new Array(n).fill(false).map(() => new Array(n).fill(false));
+            for (let i = 0; i < n; i++)
+                dp[i][i] = true;
+            let begin = 0;
+            let maxn = 1;
+            for (let right = 1; right < n; right++) {
+                for (let left = 0; left < right; left++) {
+                    if ((s[left] === s[right]) && (right - left <= 2 || dp[left + 1][right - 1])) {
+                        dp[left][right] = true;
+                        if (right - left + 1 > maxn) {
+                            maxn = right - left + 1;
+                            begin = left;
+                        }
+                    }
+                }
+            }
+            return s.slice(begin, begin + maxn);
+        };
+    </script>
+</body>
+
+</html>

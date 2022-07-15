@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reverseBetween = function(head, left, right) {
+            if (left == right)
+                return head;
+            let hair = new ListNode();
+            hair.next = head;
+            let leftPre = hair;
+            let rightPre = hair;
+            let count = 0;
+            while (count < right) {
+                if (count < left - 1) {
+                    leftPre = leftPre.next;
+                    rightPre = rightPre.next;
+                } else {
+                    rightPre = rightPre.next;
+                }
+                count++;
+            }
+            console.log(leftPre.val, rightPre.val);
+            let templ = leftPre.next;
+            let tempr = rightPre.next;
+            rightPre.next = null;
+            leftPre.next = reverse(leftPre.next);
+            templ.next = tempr;
+            return hair.next;
+        };
+
+        function reverse(head) {
+            let hair = new ListNode();
+            while (head) {
+                let hh = head.next;
+                head.next = hair.next;
+                hair.next = head;
+                head = hh;
+            }
+            return hair.next;
+        }
+    </script>
+</body>
+
+</html>

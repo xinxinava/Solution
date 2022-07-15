@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <input type="text">
+    <script>
+        var twoSum = function (nums, target) {
+            let map = new Map();
+            let len = nums.length;
+            for (let i = 0; i < len; i++) {
+                let diff = target - nums[i];
+                if (map.has(diff))
+                    return [map.get(diff), i];
+                map.set(nums[i], i);
+            }
+        };
+
+
+
+        let x = [2, 7, 11, 15];
+        twoSum(x, 9);
+        // let x1 = [3, 3];
+        // twoSum(x1, 6)
+    </script>
+</body>
+
+</html>

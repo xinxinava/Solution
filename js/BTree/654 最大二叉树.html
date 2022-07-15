@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var constructMaximumBinaryTree = function(nums) {
+            return buildTree(nums, 0, nums.length - 1);
+
+        };
+        let buildTree = function(nums, low, high) {
+            if (low > high) return null;
+            let maxindex = low;
+            for (let index = low; index <= high; index++)
+                if (nums[index] > nums[maxindex])
+                    maxindex = index;
+            let root = new TreeNode(nums[maxindex]);
+
+            root.left = buildTree(nums, low, maxindex - 1);
+            root.right = buildTree(nums, maxindex + 1, high);
+            return root;
+        }
+    </script>
+</body>
+
+</html>

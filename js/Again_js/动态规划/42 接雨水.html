@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //双指针
+        var trap = function(height) {
+            let [ans, left, right, leftMax, rightMax] = [0, 0, height.length - 1, 0, 0];
+            while (left < right) {
+                leftMax = Math.max(leftMax, height[left]);
+                rightMax = Math.max(rightMax, height[right]);
+                if (height[left] < height[right]) {
+                    ans += leftMax - height[left];
+                    left++;
+                } else {
+                    ans += rightMax - height[right];
+                    right--;
+                }
+            }
+            return ans;
+        };
+        //dp
+        var trap = function(height) {
+            let n = height.length;
+            let leftMax = new Array(n).fill(0);
+            leftMax[0] = height[0];
+            for (let i = 1; i < n; i++)
+                leftMax[i] = Math.max(leftMax[i - 1], height[i]);
+            let rightMax = new Array(n).fill(0);
+            rightMax[n - 1] = height[n - 1];
+            for (let i = n - 2; i >= 0; i--)
+                rightMax[i] = Math.max(rightMax[i + 1], height[i]);
+            let ans = 0;
+            for (let i = 0; i < n; i++)
+                ans += Math.min(leftMax[i], rightMax[i]) - height[i];
+            return ans;
+        }
+    </script>
+
+</body>
+
+</html>

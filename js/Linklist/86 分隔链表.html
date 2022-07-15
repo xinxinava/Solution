@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var partition = function(head, x) {
+            if (head === null)
+                return null;
+            let hh = new ListNode();
+            let h1 = new ListNode();
+            hh.next = head;
+            let hc = hh,
+                hc1 = h1;
+            while (hc.next != null) {
+                if (hc.next.val < x) {
+                    let temp = hc.next;
+                    hc.next = hc.next.next;
+                    hc1.next = temp;
+                    hc1 = hc1.next;
+                } else {
+                    hc = hc.next;
+                }
+            }
+            hc1.next = hh.next;
+            return h1.next;
+        };
+    </script>
+</body>
+
+</html>

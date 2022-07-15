@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findRestaurant = function(list1, list2) {
+            let minn = Number.MAX_SAFE_INTEGER;
+            let ans = [];
+            for (let i = 0; i < list1.length; i++) {
+                for (let j = 0; j < list2.length; j++) {
+                    if (list1[i] === list2[j]) {
+                        if (minn > i + j) {
+                            ans = [];
+                            ans.push(list1[i]);
+                            minn = i + j;
+                        } else if (minn == i + j)
+                            ans.push(list1[i]);
+                    }
+                }
+            }
+            return ans;
+        };
+    </script>
+</body>
+
+</html>

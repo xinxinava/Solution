@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lowestCommonAncestor = function(root, p, q) {
+            let res;
+            dfs(root, p, q);
+            return res;
+
+            function dfs(root, p, q) {
+                if (root === null)
+                    return false;
+                let lson = dfs(root.left, p, q);
+                let rson = dfs(root.right, p, q);
+                if ((lson && rson) || ((root == p || root == q) && (lson || rson)))
+                    res = root;
+                return lson || rson || (root.val === p.val || root.val === q.val);
+            }
+        };
+    </script>
+</body>
+
+</html>

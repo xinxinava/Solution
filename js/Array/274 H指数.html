@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var hIndex = function(citations) {
+            let mmp = new Map();
+            let len = citations.length;
+            for (let i = 0; i < len; i++)
+                mmp.set(citations[i], (mmp.get(citations[i]) || 0) + 1);
+            let ans = Array.from(mmp);
+            ans.sort((a, b) => b[0] - a[0]);
+            let h = Math.min(ans[0][0], ans[0][1]);
+            let maxh = Math.min(ans[0][0], ans[0][1]);
+            for (let i = 1; i < ans.length; i++) {
+                ans[i][1] += ans[i - 1][1];
+                h = Math.min(ans[i][0], ans[i][1]);
+                maxh = Math.max(maxh, h);
+                //  console.log(h,maxh);
+            }
+            return maxh;
+        };
+    </script>
+</body>
+
+</html>

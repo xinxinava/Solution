@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var deleteDuplicates = function(head) {
+            if (head == null || head.next == null)
+                return head;
+            let pre = head;
+            let cur = head.next;
+            while (cur) {
+                if (pre.val == cur.val) {
+                    pre.next = cur.next;
+                    cur = pre.next;
+                } else {
+                    pre = pre.next;
+                    cur = cur.next;
+                }
+            }
+            return head;
+        };
+    </script>
+
+</body>
+
+</html>

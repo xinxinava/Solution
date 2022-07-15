@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //BFS
+        var minMutation = function(start, end, bank) {
+            let sst = new Set();
+            for (let i = 0; i < bank.length; i++)
+                sst.add(bank[i]);
+            let queue = [];
+            queue.push(start);
+            let mmp = new Map();
+            mmp.set(start, 0);
+            let gern = ["A", "T", "C", "G"];
+            while (queue.length) {
+                let cur = queue[0];
+                queue = queue.slice(1);
+                for (let i = 0; i < cur.length; i++) {
+                    for (let j = 0; j < gern.length; j++) {
+                        if (gern[j] === cur[i]) continue;
+                        let newcur = cur.slice(0, i) + gern[j] + cur.slice(i + 1);
+                        if (!sst.has(newcur)) continue;
+                        if (!mmp.has(newcur)) {
+                            mmp.set(newcur, mmp.get(cur) + 1);
+                            queue.push(newcur);
+                            if (newcur === end)
+                                return mmp.get(newcur);
+                        }
+                    }
+                }
+            }
+            return -1;
+        };
+    </script>
+</body>
+
+</html>

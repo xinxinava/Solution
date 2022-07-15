@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findTargetSumWays = function(nums, target) {
+            let sum = 0;
+            let n = nums.length;
+            for (let i = 0; i < n; i++)
+                sum += nums[i];
+            if ((target > sum) || (target + sum) % 2 || (target + sum < 0))
+                return 0;
+            let bagWeight = (target + sum) / 2;
+            let dp = new Array(bagWeight + 1).fill(0);
+            dp[0] = 1;
+            for (let i = 0; i < n; i++) {
+                for (let j = bagWeight; j >= nums[i]; j--) {
+                    dp[j] += dp[j - nums[i]];
+                }
+            }
+            return dp[bagWeight];
+        };
+    </script>
+</body>
+
+</html>

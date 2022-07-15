@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var detectCapitalUse = function(word) {
+            if (word.length <= 1)
+                return true;
+            if (((word[0].charCodeAt() >= 'a'.charCodeAt() && word[0].charCodeAt() <= 'z'.charCodeAt()) || (word[0].charCodeAt() >= 'A'.charCodeAt() && word[0].charCodeAt() <= 'Z'.charCodeAt())) && (word[1].charCodeAt() >= 'a'.charCodeAt() && word[1].charCodeAt() <= 'z'.charCodeAt())) {
+                for (let i = 2; i < word.length; i++) {
+                    if (word[i].charCodeAt() < 'a'.charCodeAt() || word[i].charCodeAt() > 'z'.charCodeAt())
+                        return false;
+                }
+                return true;
+            }
+            if (word[0].charCodeAt() >= 'A'.charCodeAt() && word[0].charCodeAt() <= 'Z'.charCodeAt()) {
+                for (let i = 1; i < word.length; i++) {
+                    if (word[i].charCodeAt() < 'A'.charCodeAt() || word[i].charCodeAt() > 'Z'.charCodeAt())
+                        return false;
+                }
+                return true;
+            }
+            return false;
+        };
+    </script>
+</body>
+
+</html>
